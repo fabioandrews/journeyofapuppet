@@ -9,6 +9,11 @@ public class jump_ghost2 : MonoBehaviour
 	{
 	
 	}
+
+	public void andar()
+	{
+		transform.Translate(displacement);
+	}
 	
 	// Update is called once per frame
 	void Update () 

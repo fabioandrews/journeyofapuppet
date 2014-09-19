@@ -90,8 +90,8 @@ namespace AssemblyCSharp
 				public void trocarPosicaoDosTiles(Tile t1, Tile t2)
 				{
 					//Debug.Log ("t1:" + t1.getAcao() + ";" + "t2:" + t2.getAcao());
-					vetor temp1 = GameObject.Find(t1.getNome()).transform.position;
-					vetor temp2 = GameObject.Find(t2.getNome()).transform.position;
+					Vector3 temp1 = GameObject.Find(t1.getNome()).transform.position;
+					Vector3 temp2 = GameObject.Find(t2.getNome()).transform.position;
 					
 					GameObject g1 = GameObject.Find(t1.getNome());
 					GameObject g2 = GameObject.Find(t2.getNome());
@@ -103,8 +103,8 @@ namespace AssemblyCSharp
 					
 					while(g2.transform.position != temp1 && g1.transform.position != temp2)
 					{
-						g1.transform.position = g2.transform.position;
-						g2.transform.position = temp;
+						g1.transform.position = temp2;
+						g2.transform.position = temp1;
 					}
 					
 				}

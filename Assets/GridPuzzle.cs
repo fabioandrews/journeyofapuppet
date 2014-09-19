@@ -53,7 +53,11 @@ namespace AssemblyCSharp
 						}
 
 						//agora vamos trocar os tiles de posicao graficamente
-						trocarPosicaoDosTiles(tiles[posicaoUmTile], tiles[posicaoOutroTile]);
+						object[] parametros = new object[2];
+						parametros[0] = tiles[posicaoUmTile];
+						parametros[1] = tiles[posicaoOutroTile];
+						StartCoroutine(trocarPosicaoDosTiles(tiles[posicaoUmTile], tiles[posicaoOutroTile]));
+						//trocarPosicaoDosTiles(tiles[posicaoUmTile], tiles[posicaoOutroTile]);
 						//agora vamos mudar os tiles de posicao criando um novo array com os tiles nas posicoes trocadas
 						
 						Tile[] newTiles = new Tile[tiles.Length];
@@ -87,7 +91,7 @@ namespace AssemblyCSharp
 
 				}
 				
-				public void trocarPosicaoDosTiles(Tile t1, Tile t2)
+				public static void trocarPosicaoDosTiles(Tile t1, Tile t2)
 				{
 					//Debug.Log ("t1:" + t1.getAcao() + ";" + "t2:" + t2.getAcao());
 					Vector3 temp1 = GameObject.Find(t1.getNome()).transform.position;
@@ -100,20 +104,21 @@ namespace AssemblyCSharp
 					//temp.Set(g1.transform.position.x, g1.transform.position.y, g1.transform.position.z);
 					//g1.transform.position = g2.transform.position;
 					//g2.transform.position = temp;
-					
-					/*while(g2.transform.position != temp1 && g1.transform.position != temp2)
+				//PROCURAR COMO FAZER COROTINA  FAZER OS BLOCOS MUDAREM GRADUATIVAMENTE DE POSICAO		
+
+					while(g2.transform.position != temp1 && g1.transform.position != temp2)
 					{
 						if (temp1.x > temp2.x)
 						{
-							g1.transform.Translate(-1,0,0);
-							g2.transform.Translate(1,0,0);
+					g1.transform.Translate(Convert.ToSingle(-0.108),0,0);
+					g2.transform.Translate(Convert.ToSingle(0.108),0,0);
 							//g1.transform.position.x --;
 							//g2.transform.position.x ++;
 						}
 						else if (temp1.x < temp2.x)
 						{
-							g1.transform.Translate(1,0,0);
-							g2.transform.Translate(-1,0,0);
+					g1.transform.Translate(Convert.ToSingle(0.108),0,0);
+					g2.transform.Translate(Convert.ToSingle(-0.108),0,0);
 							//g1.transform.position.x ++;
 							//g2.transform.position.x --;
 						}
@@ -132,7 +137,7 @@ namespace AssemblyCSharp
 							//g1.transform.position.y ++;
 							//g2.transform.position.y --;
 						}
-					}*/
+					}
 					
 				}
 				
@@ -165,6 +170,7 @@ namespace AssemblyCSharp
 			tiles[2] = tileTerceiro;
 			tiles[3] = tileQuarto;
 			nomeTileQueFoiClicado = "";
+
 		}
 		
 		

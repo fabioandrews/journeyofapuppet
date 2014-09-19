@@ -317,7 +317,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 345949079}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.11006021, y: 1.09426367, z: -1}
+  m_LocalPosition: {x: -1.11000001, y: 1.09426367, z: -1}
   m_LocalScale: {x: .97548902, y: .981203675, z: 1}
   m_Children: []
   m_Father: {fileID: 804724799}
@@ -526,7 +526,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 937643115}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.0372957326, y: 1.09426403, z: -1}
+  m_LocalPosition: {x: -.0299999993, y: 1.09426403, z: -1}
   m_LocalScale: {x: .97548902, y: .981203675, z: 1}
   m_Children: []
   m_Father: {fileID: 804724799}
@@ -642,6 +642,78 @@ Transform:
   - {fileID: 1914578770}
   m_Father: {fileID: 0}
   m_RootOrder: 7
+--- !u!1 &994553426
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 994553429}
+  - 132: {fileID: 994553428}
+  - 114: {fileID: 994553427}
+  m_Layer: 0
+  m_Name: texto_do_balao
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &994553427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 994553426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04c9ff76afd8987478a3a65805fcd555, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1146199927}
+  offset: {x: 0, y: 2, z: 0}
+  clampToScreen: 0
+  clampBorderSize: .0500000007
+  useMainCamera: 1
+  cameraToUse: {fileID: 954559457}
+  frasesBonecoParado: []
+  balaoDeFala: {fileID: 1292624898}
+  guiTextTextoModificar: {fileID: 994553428}
+--- !u!132 &994553428
+GUIText:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 994553426}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Text: "EU V\xD4 MORR\xCA!"
+  m_Anchor: 4
+  m_Alignment: 1
+  m_PixelOffset: {x: 0, y: 0}
+  m_LineSpacing: 1
+  m_TabSize: 4
+  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Material: {fileID: 0}
+  m_FontSize: 10
+  m_FontStyle: 0
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278190335
+  m_PixelCorrect: 1
+  m_RichText: 1
+--- !u!4 &994553429
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 994553426}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .5, y: .5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
 --- !u!1 &1017776150
 GameObject:
   m_ObjectHideFlags: 0
@@ -689,7 +761,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1017776150}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.05100763, y: 1.09426403, z: -1}
+  m_LocalPosition: {x: 1.04999995, y: 1.09426403, z: -1}
   m_LocalScale: {x: .975488961, y: .981203735, z: 1}
   m_Children: []
   m_Father: {fileID: 804724799}
@@ -819,9 +891,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1146199923}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.0658474, y: .803928852, z: 0}
+  m_LocalPosition: {x: -3.0658474, y: .773102105, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1292624901}
   m_Father: {fileID: 0}
   m_RootOrder: 1
 --- !u!114 &1146199928
@@ -845,6 +918,88 @@ MonoBehaviour:
   bateuEmAlgo: 0
   deveAndar: 0
   puzzle: {fileID: 804724797}
+--- !u!1 &1292624897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1292624901}
+  - 212: {fileID: 1292624900}
+  - 95: {fileID: 1292624899}
+  - 114: {fileID: 1292624898}
+  m_Layer: 0
+  m_Name: balao_grito
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1292624898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1292624897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 271723d63587b2f43918d4fa312f647b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  segBalaoAparecer: 10
+  segBalaoDesaparecer: 5
+  spriteDesaparecer: {fileID: 1292624900}
+  textoDoBalao: {fileID: 994553427}
+--- !u!95 &1292624899
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1292624897}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3fae76a459c28fa4fbc7976c9b110bd1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!212 &1292624900
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1292624897}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300002, guid: 8f92c953e2c324e4e99bfa029dd9b6a9, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!4 &1292624901
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1292624897}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.53214931, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1146199927}
+  m_RootOrder: 0
 --- !u!1 &1725488995
 GameObject:
   m_ObjectHideFlags: 0

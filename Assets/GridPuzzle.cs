@@ -103,8 +103,27 @@ namespace AssemblyCSharp
 					
 					while(g2.transform.position != temp1 && g1.transform.position != temp2)
 					{
-						g1.transform.position = temp2;
-						g2.transform.position = temp1;
+						if (temp1.x > temp2.x)
+						{
+							g1.transform.position.x --;
+							g2.transform.position.x ++;
+						}
+						else if (temp1.x < temp2.x)
+						{
+							g1.transform.position.x ++;
+							g2.transform.position.x --;
+						}
+						
+						if (temp1.y > temp2.y)
+						{
+							g1.transform.position.y --;
+							g2.transform.position.y ++;
+						}
+						else if (temp1.y < temp2.y)
+						{
+							g1.transform.position.y ++;
+							g2.transform.position.y --;
+						}
 					}
 					
 				}

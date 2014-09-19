@@ -96,35 +96,43 @@ namespace AssemblyCSharp
 					GameObject g1 = GameObject.Find(t1.getNome());
 					GameObject g2 = GameObject.Find(t2.getNome());
 				
-					Vector3 temp = new Vector3();
+					//Vector3 temp = new Vector3();
 					//temp.Set(g1.transform.position.x, g1.transform.position.y, g1.transform.position.z);
 					//g1.transform.position = g2.transform.position;
 					//g2.transform.position = temp;
 					
-					while(g2.transform.position != temp1 && g1.transform.position != temp2)
+					/*while(g2.transform.position != temp1 && g1.transform.position != temp2)
 					{
 						if (temp1.x > temp2.x)
 						{
-							g1.transform.position.x --;
-							g2.transform.position.x ++;
+							g1.transform.Translate(-1,0,0);
+							g2.transform.Translate(1,0,0);
+							//g1.transform.position.x --;
+							//g2.transform.position.x ++;
 						}
 						else if (temp1.x < temp2.x)
 						{
-							g1.transform.position.x ++;
-							g2.transform.position.x --;
+							g1.transform.Translate(1,0,0);
+							g2.transform.Translate(-1,0,0);
+							//g1.transform.position.x ++;
+							//g2.transform.position.x --;
 						}
 						
 						if (temp1.y > temp2.y)
 						{
-							g1.transform.position.y --;
-							g2.transform.position.y ++;
+							g1.transform.Translate(0,-1,0);
+							g2.transform.Translate(0,1,0);
+							//g1.transform.position.y --;
+							//g2.transform.position.y ++;
 						}
 						else if (temp1.y < temp2.y)
 						{
-							g1.transform.position.y ++;
-							g2.transform.position.y --;
+							g1.transform.Translate(0,1,0);
+							g2.transform.Translate(0,-1,0);
+							//g1.transform.position.y ++;
+							//g2.transform.position.y --;
 						}
-					}
+					}*/
 					
 				}
 				

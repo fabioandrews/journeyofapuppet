@@ -56,8 +56,8 @@ namespace AssemblyCSharp
 						object[] parametros = new object[2];
 						parametros[0] = tiles[posicaoUmTile];
 						parametros[1] = tiles[posicaoOutroTile];
-						StartCoroutine(trocarPosicaoDosTiles(tiles[posicaoUmTile], tiles[posicaoOutroTile]));
-						//trocarPosicaoDosTiles(tiles[posicaoUmTile], tiles[posicaoOutroTile]);
+						//StartCoroutine(trocarPosicaoDosTiles(tiles[posicaoUmTile], tiles[posicaoOutroTile]));
+						trocarPosicaoDosTiles(tiles[posicaoUmTile], tiles[posicaoOutroTile]);
 						//agora vamos mudar os tiles de posicao criando um novo array com os tiles nas posicoes trocadas
 						
 						Tile[] newTiles = new Tile[tiles.Length];
@@ -100,13 +100,13 @@ namespace AssemblyCSharp
 					GameObject g1 = GameObject.Find(t1.getNome());
 					GameObject g2 = GameObject.Find(t2.getNome());
 				
-					//Vector3 temp = new Vector3();
-					//temp.Set(g1.transform.position.x, g1.transform.position.y, g1.transform.position.z);
-					//g1.transform.position = g2.transform.position;
-					//g2.transform.position = temp;
+					Vector3 temp = new Vector3();
+					temp.Set(g1.transform.position.x, g1.transform.position.y, g1.transform.position.z);
+					g1.transform.position = g2.transform.position;
+					g2.transform.position = temp;
 				//PROCURAR COMO FAZER COROTINA  FAZER OS BLOCOS MUDAREM GRADUATIVAMENTE DE POSICAO		
 
-					while(g2.transform.position != temp1 && g1.transform.position != temp2)
+					/*while(g2.transform.position != temp1 && g1.transform.position != temp2)
 					{
 						if (temp1.x > temp2.x)
 						{
@@ -137,7 +137,7 @@ namespace AssemblyCSharp
 							//g1.transform.position.y ++;
 							//g2.transform.position.y --;
 						}
-					}
+					}*/
 					
 				}
 				

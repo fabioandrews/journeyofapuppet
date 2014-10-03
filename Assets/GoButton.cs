@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+namespace AssemblyCSharp
+{
 public class GoButton : MonoBehaviour {
 	public jump_ghost2 fantasminha;
 	// Use this for initialization
@@ -15,4 +17,5 @@ public class GoButton : MonoBehaviour {
 	
 				}
 		}
+}
 }

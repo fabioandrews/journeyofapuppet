@@ -1292,6 +1292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fantasminha: {fileID: 1146199928}
   cameraPrincipal: {fileID: 954559457}
+  puzzle: {fileID: 804724797}
 --- !u!212 &1914578769
 SpriteRenderer:
   m_ObjectHideFlags: 0

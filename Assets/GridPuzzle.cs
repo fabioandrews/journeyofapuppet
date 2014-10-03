@@ -16,12 +16,17 @@ namespace AssemblyCSharp
 	{
 			public String nomeTileQueFoiClicado; //qd alguem clica num tile, esse nome muda
 			static Tile[] tiles; //diz quais as acoes a serem executadas e em que ordem
+			static String [] nomesDosTilesEmOrdem;//NOVO vou armazenar os tiles antes do restart para manter eles na ordem
+			
+			static Vector3 [] posicoesDosTiles;
 				public GridPuzzle()
 				{
 				}
 			
 				public void alguemClicouNumTile(String nomeTile)
 				{
+					//Debug.Log("em alguemClicouNumTile, nomeTileQueFoiClicado=" + nomeTileQueFoiClicado);
+					//Debug.Log("metodo alguemClicouNumTile() nomeTile=" + nomeTile);
 					if (nomeTileQueFoiClicado.Length > 0) 
 					{
 						//alguem ja havia clicado num tile antes. Vamos trocar eles de posicao. Primeiro passo: Achar
@@ -33,15 +38,22 @@ namespace AssemblyCSharp
 						for(int i = 0; i < tiles.Length; i++)
 						{
 							String nome = tiles[i].getNome();
+							Debug.Log("tile dentro do log=" + tiles[i]);
 							if(nome.CompareTo(nomeTile) == 0 || nome.CompareTo(nomeTileQueFoiClicado) == 0)
 							{
+								//Debug.Log("ACHOU TILE DE NOME IGUAL!!!!");
+								//Debug.Log("tule dentro do log=" + nome);
 								if(umTile == null)
 								{
+									//Debug.Log("UMTILE = NULL!!!!");
 									umTile = tiles[i];
+									Debug.Log("UMTILE agorah eh =" + umTile + "!!!!!!!!!!!!!!!!!!!");
+									Debug.Log("DE NOME =" + umTile.getNome() + "!!!!!!!!!!!!!!!!!!!");
 									posicaoUmTile = i;
 								}
 								else
 								{
+									//Debug.Log("UMTILE nao eh NULL!!!!");
 									outroTile = tiles[i];
 									posicaoOutroTile = i;
 								}
@@ -50,6 +62,9 @@ namespace AssemblyCSharp
 
 						//agora vamos trocar os tiles de posicao graficamente
 						object[] parametros = new object[2];
+						Debug.Log("posicaoUmTile=" + posicaoUmTile);
+						Debug.Log ("posicaoOutroTile=" + posicaoOutroTile);
+						Debug.Log ("tiles.size=" + tiles.Length);
 						parametros[0] = tiles[posicaoUmTile];
 						parametros[1] = tiles[posicaoOutroTile];
 						//StartCoroutine(trocarPosicaoDosTiles(tiles[posicaoUmTile], tiles[posicaoOutroTile]));
@@ -134,7 +149,10 @@ namespace AssemblyCSharp
 							//g2.transform.position.y --;
 						}
 					}*/
-					
+
+					//NOVO TROCAR POSICAO DOS TILES
+					//trocarPosicoesDosTilesNoArray(t1, t2);
+				
 				}
 				
 				public String[] pegarOrdemDasAcoes()
@@ -152,59 +170,134 @@ namespace AssemblyCSharp
 		// Use this for initialization
 		void Start () 
 		{
-			String nomeTiles = "tile";
-			int quantosTilesExistemNaCena = 0;
-			//primeiro vou saber quantos tiles existem na cena para saber o tamanho exato do meu array de tiles
-			for (int i = 1; i < 10; i++)  
+			if(tiles == null)
 			{
-				//sao 9 tiles no total
-				nomeTiles = nomeTiles + i;
-				GameObject gameObjectDoTile = GameObject.Find(nomeTiles);
-				if(gameObjectDoTile != null)
+				String nomeTiles = "tile";
+				int quantosTilesExistemNaCena = 0;
+				//primeiro vou saber quantos tiles existem na cena para saber o tamanho exato do meu array de tiles
+				for (int i = 1; i < 10; i++)  
 				{
-					//o tile existe na cena
-					quantosTilesExistemNaCena = quantosTilesExistemNaCena + 1;
-					nomeTiles = nomeTiles.Substring(0, nomeTiles.Length - 1); //tirei a ultima letra dessa string. Ficou so "tile"
+					//sao 9 tiles no total
+					nomeTiles = nomeTiles + i;
+					GameObject gameObjectDoTile = GameObject.Find(nomeTiles);
+					if(gameObjectDoTile != null)
+					{
+						//o tile existe na cena
+						quantosTilesExistemNaCena = quantosTilesExistemNaCena + 1;
+						nomeTiles = nomeTiles.Substring(0, nomeTiles.Length - 1); //tirei a ultima letra dessa string. Ficou so "tile"
+					}
+					else
+					{
+						//n tem mais nenhum tile na cena. Parar de procurar.
+						break;
+					}
 				}
-				else
+				
+				//agora eu sei o tamanho ideal para o arrannjo tiles
+				tiles = new Tile[quantosTilesExistemNaCena];
+				
+				//agora vou povoar esse arranjo
+				nomeTiles = "tile";
+				for (int i = 1; i < 10; i++)  
 				{
-					//n tem mais nenhum tile na cena. Parar de procurar.
-					break;
+					//vou pegar cada um dos 9 tiles, se houverem
+					//vou fazer uma busca pelo objeto de nome tile1, depois tile2 e assim vai. Se ele n existir, nao entra no arranjo tiles
+					nomeTiles = nomeTiles + i;
+					GameObject gameObjectDoTile = GameObject.Find(nomeTiles);
+					if(gameObjectDoTile != null)
+					{
+						//o tile existe na cena
+						Tile umTile = (Tile) gameObjectDoTile.GetComponent<Tile>();
+						umTile.setarNome(nomeTiles);
+						String acaoTile = gameObjectDoTile.tag; //a cao de cada tile deve estar setada como tag dele
+						umTile.setarAcao(acaoTile);
+						tiles[i - 1] = umTile; //povoei o arranjo tiles
+						
+						nomeTiles = nomeTiles.Substring(0, nomeTiles.Length - 1); //tirei a ultima letra dessa string. Ficou so "tile"
+						
+					}
+					else
+					{
+						//nao existem mais tiles na cena
+						break;
+					}
 				}
 			}
-
-			//agora eu sei o tamanho ideal para o arrannjo tiles
-			tiles = new Tile[quantosTilesExistemNaCena];
-
-			//agora vou povoar esse arranjo
-			nomeTiles = "tile";
-			for (int i = 1; i < 10; i++)  
+			else//NOVO CASO O ARRAY JA TENHA SIDO CRIADO
 			{
-				//vou pegar cada um dos 9 tiles, se houverem
-				//vou fazer uma busca pelo objeto de nome tile1, depois tile2 e assim vai. Se ele n existir, nao entra no arranjo tiles
-				nomeTiles = nomeTiles + i;
-				GameObject gameObjectDoTile = GameObject.Find(nomeTiles);
-				if(gameObjectDoTile != null)
+				int quantosTilesExistemNaCena = 0;
+				String nomeTiles = "tile";
+				//primeiro vou saber quantos tiles existem na cena para saber o tamanho exato do meu array de tiles
+				for (int i = 1; i < 10; i++)  
 				{
-					//o tile existe na cena
-					Tile umTile = (Tile) gameObjectDoTile.GetComponent<Tile>();
-					umTile.setarNome(nomeTiles);
-					String acaoTile = gameObjectDoTile.tag; //a cao de cada tile deve estar setada como tag dele
-					umTile.setarAcao(acaoTile);
-					tiles[i - 1] = umTile; //povoei o arranjo tiles
-
-					nomeTiles = nomeTiles.Substring(0, nomeTiles.Length - 1); //tirei a ultima letra dessa string. Ficou so "tile"
-
+					//sao 9 tiles no total
+					nomeTiles = nomeTiles + i;
+					GameObject gameObjectDoTile = GameObject.Find(nomeTiles);
+					if(gameObjectDoTile != null)
+					{
+						//o tile existe na cena
+						quantosTilesExistemNaCena = quantosTilesExistemNaCena + 1;
+						nomeTiles = nomeTiles.Substring(0, nomeTiles.Length - 1); //tirei a ultima letra dessa string. Ficou so "tile"
+					}
+					else
+					{
+						//n tem mais nenhum tile na cena. Parar de procurar.
+						break;
+					}
 				}
-				else
+				
+				nomeTiles = "tile";
+				Tile[] novoArranjoTiles = new Tile[quantosTilesExistemNaCena];
+				
+				
+				for (int i = 1; i < 10; i++)  
 				{
-					//nao existem mais tiles na cena
-					break;
+					//vou pegar cada um dos 9 tiles, se houverem
+					//vou fazer uma busca pelo objeto de nome tile1, depois tile2 e assim vai. Se ele n existir, nao entra no arranjo tiles
+					nomeTiles = nomeTiles + i;
+					GameObject gameObjectDoTile = GameObject.Find(nomeTiles);
+					if(gameObjectDoTile != null)
+					{
+						//o tile existe na cena
+						Tile umTile = (Tile) gameObjectDoTile.GetComponent<Tile>();
+						umTile.setarNome(nomeTiles);
+						String acaoTile = gameObjectDoTile.tag; //a cao de cada tile deve estar setada como tag dele
+						umTile.setarAcao(acaoTile);
+						novoArranjoTiles[i - 1] = umTile;
+						
+						nomeTiles = nomeTiles.Substring(0, nomeTiles.Length - 1); //tirei a ultima letra dessa string. Ficou so "tile"
+						
+					}
+					else
+					{
+						//nao existem mais tiles na cena
+						break;
+					}
 				}
+				
+				//agora eu devo fazer esses tiles ficarem na ordem desejada
+				tiles = new Tile[quantosTilesExistemNaCena];
+				int percorredorTiles = 0;
+				for(int l = 0; l < nomesDosTilesEmOrdem.Length; l++)
+				{
+					String umNome = nomesDosTilesEmOrdem[l];
+					for(int m = 0; m < novoArranjoTiles.Length; m++)
+					{
+						Tile umTile = novoArranjoTiles[m];
+						if(umNome.CompareTo(umTile.getNome()) == 0)
+						{
+							tiles[percorredorTiles] = umTile;
+							percorredorTiles = percorredorTiles + 1;
+						}
+					}
+				}
+				
 			}
-
+			
+			
+			
 			nomeTileQueFoiClicado = "";
-
+			
 		}
 		
 		
@@ -212,9 +305,78 @@ namespace AssemblyCSharp
 		}
 		void Awake() 
 		{
+			if(tiles != null)
+			{
+				//segunda vez que eh chamado, ou seja, no restart da fase.
+				String nomeTiles = "tile";
+				//posicoesDosTiles = new Vector3[tiles.Length];
+				for (int i = 1; i < 10; i++)  
+				{
+					
+					//sao 9 tiles no total
+					nomeTiles = nomeTiles + i;
+					GameObject gameObjectDoTile = GameObject.Find(nomeTiles);
+					if(gameObjectDoTile != null)
+					{
+						//o tile existe na cena
+						//TIREI Vector3 posicaoTile = gameObjectDoTile.transform.position;
+						//TIREI posicoesDosTiles[i - 1] = posicaoTile;
+						gameObjectDoTile.transform.position = posicoesDosTiles[i - 1];
+						nomeTiles = nomeTiles.Substring(0, nomeTiles.Length - 1); //tirei a ultima letra dessa string. Ficou so "tile"
+					}
+					else
+					{
+						//n tem mais nenhum tile na cena. Parar de procurar.
+						break;
+					}
+				}
+			}
+			
 			DontDestroyOnLoad(this);
+			
 		}
-
+		
+		public void pegarPosicoesDosTilesAntesDeRestartCena()//NOVO MUDEI 
+		{
+			if(tiles != null)
+			{
+				//segunda vez que eh chamado, ou seja, no restart da fase.
+				String nomeTiles = "tile";
+				posicoesDosTiles = new Vector3[tiles.Length];
+				for (int i = 1; i < 10; i++)  
+				{
+					
+					//sao 9 tiles no total
+					nomeTiles = nomeTiles + i;
+					
+					GameObject gameObjectDoTile = GameObject.Find(nomeTiles);
+					if(gameObjectDoTile != null)
+					{
+						//o tile existe na cena
+						Vector3 posicaoTile = gameObjectDoTile.transform.position;
+						posicoesDosTiles[i - 1] = posicaoTile;
+						nomeTiles = nomeTiles.Substring(0, nomeTiles.Length - 1); //tirei a ultima letra dessa string. Ficou so "tile"
+					}
+					else
+					{
+						//n tem mais nenhum tile na cena. Parar de procurar.
+						break;
+					}
+				}
+				
+				//falta pegar os nomes dos tiles em ordem
+				nomesDosTilesEmOrdem = new String[tiles.Length];
+				for(int j = 0; j < tiles.Length; j++)
+				{
+					nomesDosTilesEmOrdem[j] = tiles[j].getNome();
+				}
+				
+				DontDestroyOnLoad(this);
+			}
+			
+		}
+		
+		
 	}
 }
 

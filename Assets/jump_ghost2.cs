@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
+namespace AssemblyCSharp
+{
+
 public class jump_ghost2 : MonoBehaviour 
 {
 	public Vector3 displacement;
@@ -73,4 +76,5 @@ public class jump_ghost2 : MonoBehaviour
 	}
 
 	 
+}
 }

@@ -26,7 +26,9 @@ public class Personagem : MonoBehaviour
 	Boolean personagemVaiAtacarOMonstro; //quando um personagem alcanca o collider mais externo do monstro, 
 										//caso a proxima acao seja atacar, esse booleano muda porque quando o personagem estiver colado no monstro,
 										//ele ataca!
-	
+	public BalaoDeFala balaoDeFala;//NOVO balao que fica seguindo personagem
+	public PopupWindowGameOver popupGameOver;//NOVO popup de game over
+	public AudioClip sfxBatida;//NOVO sfx batida
 
 	// Use this for initialization
 	void Start () 
@@ -71,6 +73,11 @@ public class Personagem : MonoBehaviour
 					{
 						//uh oh. Ele encostou no monstro e nao vai atacar? Entao morre, descracado!
 						spriteRenderer.sprite = spritePersonagemMorreu;
+						balaoDeFala.personagemEmMomentoDeAcao = true;
+						balaoDeFala.StartCoroutine("showBaloonOnImpact", "inimigo");
+						popupGameOver.mostrarPopupGameOver = true;
+						audio.PlayOneShot(sfxBatida);
+						Debug.Log("jump ghost mudou o mostrar popup para true");
 					}
 					else
 					{
@@ -83,8 +90,12 @@ public class Personagem : MonoBehaviour
 				}
 				else if (col.gameObject.name.CompareTo("campopersonagemMorreDeCaidaInfinita") != 0) 
 				{
+					balaoDeFala.personagemEmMomentoDeAcao = true;
+					balaoDeFala.StartCoroutine("showBaloonOnImpact", "buraco");
+					popupGameOver.mostrarPopupGameOver = true;
+					audio.PlayOneShot(sfxBatida);
 					//o personagem caiu em alguma parte do estagio e deveria morrer com isso. O jogador tem de reiniciar a fase
-					Application.LoadLevel(Application.loadedLevel);
+
 					//Debug.Log("caiu no buraco");
 					
 				}

@@ -14,12 +14,8 @@ namespace AssemblyCSharp
 {
 	public class GridPuzzle : MonoBehaviour
 	{
-			public Tile tilePrimeiro;
-			public Tile tileSegundo;
-			public Tile tileTerceiro;
-			public Tile tileQuarto;
 			public String nomeTileQueFoiClicado; //qd alguem clica num tile, esse nome muda
-			Tile[] tiles; //diz quais as acoes a serem executadas e em que ordem
+			static Tile[] tiles; //diz quais as acoes a serem executadas e em que ordem
 				public GridPuzzle()
 				{
 				}
@@ -156,19 +152,57 @@ namespace AssemblyCSharp
 		// Use this for initialization
 		void Start () 
 		{
-			tilePrimeiro.setarAcao("pularbaixo");
-			tileSegundo.setarAcao("pularalto");
-			tilePrimeiro.setarNome("tile1");
-			tileSegundo.setarNome("tile2");
-			tileTerceiro.setarAcao("subirescada");
-			tileTerceiro.setarNome("tile3");
-			tileQuarto.setarAcao("atacar");
-			tileQuarto.setarNome("tile4");
-			tiles = new Tile[4];
-			tiles[0] = tilePrimeiro;
-			tiles[1] = tileSegundo;
-			tiles[2] = tileTerceiro;
-			tiles[3] = tileQuarto;
+			String nomeTiles = "tile";
+			int quantosTilesExistemNaCena = 0;
+			//primeiro vou saber quantos tiles existem na cena para saber o tamanho exato do meu array de tiles
+			for (int i = 1; i < 10; i++)  
+			{
+				//sao 9 tiles no total
+				nomeTiles = nomeTiles + i;
+				GameObject gameObjectDoTile = GameObject.Find(nomeTiles);
+				if(gameObjectDoTile != null)
+				{
+					//o tile existe na cena
+					quantosTilesExistemNaCena = quantosTilesExistemNaCena + 1;
+					nomeTiles = nomeTiles.Substring(0, nomeTiles.Length - 1); //tirei a ultima letra dessa string. Ficou so "tile"
+				}
+				else
+				{
+					//n tem mais nenhum tile na cena. Parar de procurar.
+					break;
+				}
+			}
+
+			//agora eu sei o tamanho ideal para o arrannjo tiles
+			tiles = new Tile[quantosTilesExistemNaCena];
+
+			//agora vou povoar esse arranjo
+			nomeTiles = "tile";
+			for (int i = 1; i < 10; i++)  
+			{
+				//vou pegar cada um dos 9 tiles, se houverem
+				//vou fazer uma busca pelo objeto de nome tile1, depois tile2 e assim vai. Se ele n existir, nao entra no arranjo tiles
+				nomeTiles = nomeTiles + i;
+				GameObject gameObjectDoTile = GameObject.Find(nomeTiles);
+				if(gameObjectDoTile != null)
+				{
+					//o tile existe na cena
+					Tile umTile = (Tile) gameObjectDoTile.GetComponent<Tile>();
+					umTile.setarNome(nomeTiles);
+					String acaoTile = gameObjectDoTile.tag; //a cao de cada tile deve estar setada como tag dele
+					umTile.setarAcao(acaoTile);
+					tiles[i - 1] = umTile; //povoei o arranjo tiles
+
+					nomeTiles = nomeTiles.Substring(0, nomeTiles.Length - 1); //tirei a ultima letra dessa string. Ficou so "tile"
+
+				}
+				else
+				{
+					//nao existem mais tiles na cena
+					break;
+				}
+			}
+
 			nomeTileQueFoiClicado = "";
 
 		}
@@ -176,6 +210,11 @@ namespace AssemblyCSharp
 		
 		void Update () {
 		}
+		void Awake() 
+		{
+			DontDestroyOnLoad(this);
+		}
+
 	}
 }
 

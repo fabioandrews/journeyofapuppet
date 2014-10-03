@@ -15,16 +15,16 @@ public class script_texto_balao : MonoBehaviour {
 
 	public string[] frasesBonecoParado;//{"VAI LOGO!", "PENSA BEM, VIU?", "EU VÔ MORRÊ!", "EU JÁ ERA!", "TÁ PENSANDO DEMAIS!BORA!"};
 
-	public script_balao balaoDeFala;
+	public BalaoDeFala balaoDeFala;
 
 	// Use this for initialization
 	void Start () {
 		frasesBonecoParado = new string[5];//{"VAI LOGO!", "PENSA BEM, VIU?", "EU VÔ MORRÊ!", "EU JÁ ERA!", "TÁ PENSANDO DEMAIS!BORA!"};
 		frasesBonecoParado[0] = "VAI LOGO!";
-		frasesBonecoParado[1] = "PENSA BEM, VIU?";
-		frasesBonecoParado[2] = "EU VÔ MORRÊ";
+		frasesBonecoParado[1] = "PENSA BEM!";
+		frasesBonecoParado[2] = "VÔ MORRÊ";
 		frasesBonecoParado[3] = "EU JÁ ERA!";
-		frasesBonecoParado[4] = "TÁ PENSANDO DEMAIS!BORA";
+		frasesBonecoParado[4] = "BORA!";
 		thisTransform = transform;
 		if (useMainCamera)
 			cam = Camera.main;
@@ -37,13 +37,13 @@ public class script_texto_balao : MonoBehaviour {
 
 	public GUIText guiTextTextoModificar;
 
-	public IEnumerator fazerTextoAparecer ()
+	public IEnumerator fazerTextoQualquerAparecer ()
 	{
-		Debug.Log ("fazerTexroAparecer chamado");
+		//Debug.Log ("fazerTexroAparecer chamado");
 		double fontsize = 18;//bote aqui 0 se quiser o efeito da letra pequenininha e aumenta
-		Debug.Log ("size=" + frasesBonecoParado.Length);
+		//Debug.Log ("size=" + frasesBonecoParado.Length);
 		int indiceNovaFraseDoBoneco = Random.Range (0, frasesBonecoParado.Length - 1);
-		Debug.Log ("indice=" + indiceNovaFraseDoBoneco);
+		//Debug.Log ("indice=" + indiceNovaFraseDoBoneco);
 		guiTextTextoModificar.text = frasesBonecoParado [indiceNovaFraseDoBoneco];
 		guiTextTextoModificar.color = new Color (255, 0, 0, 1f);
 		//texto vermelho, mas visivel
@@ -52,14 +52,14 @@ public class script_texto_balao : MonoBehaviour {
 			if (fontsize < 18) {
 				yield return new WaitForSeconds (0.10f);
 				secondsInAnimation = secondsInAnimation + 0.10f;
-				Debug.Log ("secondsInAnimation=" + secondsInAnimation);
+				//Debug.Log ("secondsInAnimation=" + secondsInAnimation);
 				fontsize += 2;
 				this.guiTextTextoModificar.fontSize = (int)fontsize;
 			}
 			else {
 				yield return new WaitForSeconds (0.10f);
 				secondsInAnimation = secondsInAnimation + 0.10f;
-				Debug.Log ("secondsInAnimation=" + secondsInAnimation);
+				//Debug.Log ("secondsInAnimation=" + secondsInAnimation);
 				fontsize -= 2;
 				this.guiTextTextoModificar.fontSize = (int)fontsize;
 			}
@@ -70,6 +70,43 @@ public class script_texto_balao : MonoBehaviour {
 	public void fazerTextoDesaparecer()
 	{
 		guiTextTextoModificar.color = new Color (255, 0, 0, 0f);//texto vermelho, mas invisivel
+	}
+
+	public IEnumerator fazerBalaoAparecerNoImpacto(string noQuePersonagemTocou)
+	{
+		//Debug.Log("fazerBalaoAparecerNoImpacto chamada");
+		string mensagemAparecerNoBalao = "";
+		if(noQuePersonagemTocou.Contains("inimigo") == true)
+		{
+			mensagemAparecerNoBalao = "SEU INÚTIL!";
+		}
+		else if(noQuePersonagemTocou.Contains("buraco") == true)
+		{
+			mensagemAparecerNoBalao = "VÔ CAIR, ANTA!";
+		}
+		//fazer balao aparecer no impacto por tempoAteBalaoDesaparecer segundos
+		guiTextTextoModificar.text = mensagemAparecerNoBalao;
+		guiTextTextoModificar.color = new Color (255, 0, 0, 1f);
+		//fazer animaçao texto oscilar por um tempo
+		float secondsInAnimation = 0;
+		double fontsize = 18;
+		while (secondsInAnimation < balaoDeFala.segBalaoDesaparecer) {
+			if (fontsize < 18) {
+				yield return new WaitForSeconds (0.10f);
+				secondsInAnimation = secondsInAnimation + 0.10f;
+				//Debug.Log ("secondsInAnimation=" + secondsInAnimation);
+				fontsize += 2;
+				this.guiTextTextoModificar.fontSize = (int)fontsize;
+			}
+			else {
+				yield return new WaitForSeconds (0.10f);
+				secondsInAnimation = secondsInAnimation + 0.10f;
+				//Debug.Log ("secondsInAnimation=" + secondsInAnimation);
+				fontsize -= 2;
+				this.guiTextTextoModificar.fontSize = (int)fontsize;
+			}
+		}
+
 	}
 
 

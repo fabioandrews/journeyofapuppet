@@ -137,7 +137,7 @@ GameObject:
   - 65: {fileID: 342468917}
   m_Layer: 0
   m_Name: tile4
-  m_TagString: tile4
+  m_TagString: atacar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -213,7 +213,7 @@ GameObject:
   - 65: {fileID: 433984510}
   m_Layer: 0
   m_Name: tile1
-  m_TagString: tile2
+  m_TagString: pularbaixo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -543,7 +543,7 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 848613535}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!92 &848613540
 Behaviour:
   m_ObjectHideFlags: 0
@@ -558,6 +558,46 @@ Behaviour:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 848613535}
   m_Enabled: 1
+--- !u!1 &890936025
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 890936027}
+  - 114: {fileID: 890936026}
+  m_Layer: 0
+  m_Name: popupGameOver
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &890936026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 890936025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 142f3a92f218d06429a18d58d3192b40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mostrarPopupGameOver: 0
+--- !u!4 &890936027
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 890936025}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .5, y: .5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
 --- !u!1 &1023142552
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,7 +611,7 @@ GameObject:
   - 65: {fileID: 1023142555}
   m_Layer: 0
   m_Name: tile2
-  m_TagString: tile2
+  m_TagString: pularalto
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -662,10 +702,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0b1df85347393d47b9ab736adce74f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilePrimeiro: {fileID: 433984508}
-  tileSegundo: {fileID: 1023142553}
-  tileTerceiro: {fileID: 1775428097}
-  tileQuarto: {fileID: 342468915}
   nomeTileQueFoiClicado: 
 --- !u!4 &1162331329
 Transform:
@@ -1115,7 +1151,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1618035396}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.53214931, z: 0}
+  m_LocalPosition: {x: .0388131104, y: 2.02757812, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1880052777}
@@ -1128,13 +1164,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1618035396}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 271723d63587b2f43918d4fa312f647b, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e8cf119f1858a0449d946eb84ca0ca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   segBalaoAparecer: 10
   segBalaoDesaparecer: 5
   spriteDesaparecer: {fileID: 1618035400}
   textoDoBalao: {fileID: 1783989403}
+  personagemEmMomentoDeAcao: 0
+  target: {fileID: 1618035397}
+  offset: {x: 0, y: 1, z: 0}
+  clampToScreen: 0
+  clampBorderSize: .0500000007
+  useMainCamera: 1
+  cameraToUse: {fileID: 848613537}
 --- !u!95 &1618035399
 Animator:
   serializedVersion: 3
@@ -1325,7 +1368,7 @@ GameObject:
   - 65: {fileID: 1775428098}
   m_Layer: 0
   m_Name: tile3
-  m_TagString: tile3
+  m_TagString: subirescada
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1472,6 +1515,7 @@ GameObject:
   - 58: {fileID: 1880052775}
   - 50: {fileID: 1880052774}
   - 114: {fileID: 1880052773}
+  - 82: {fileID: 1880052778}
   m_Layer: 0
   m_Name: ghostSheet_0
   m_TagString: Untagged
@@ -1500,6 +1544,9 @@ MonoBehaviour:
   bateuEmAlgo: 0
   deveAndar: 0
   puzzle: {fileID: 1162331328}
+  balaoDeFala: {fileID: 1618035398}
+  popupGameOver: {fileID: 890936026}
+  sfxBatida: {fileID: 8300000, guid: d4e1b316b872b4b47b8ea1f7ef4973c0, type: 3}
 --- !u!50 &1880052774
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -1561,3 +1608,61 @@ Transform:
   - {fileID: 1618035397}
   m_Father: {fileID: 0}
   m_RootOrder: 6
+--- !u!82 &1880052778
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1880052772}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2

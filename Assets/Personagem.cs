@@ -88,7 +88,7 @@ public class Personagem : MonoBehaviour
 
 					}
 				}
-				else if (col.gameObject.name.CompareTo("campopersonagemMorreDeCaidaInfinita") != 0) 
+				else if (col.gameObject.name.CompareTo("campopersonagemMorreDeCaidaInfinita") == 0) 
 				{
 					balaoDeFala.personagemEmMomentoDeAcao = true;
 					balaoDeFala.StartCoroutine("showBaloonOnImpact", "buraco");
@@ -99,7 +99,14 @@ public class Personagem : MonoBehaviour
 					//Debug.Log("caiu no buraco");
 					
 				}
+				else if(col.gameObject.name.CompareTo("finish") == 0)
+				{
+					//musiquinha de vitoria serah tocada
+
+				}
+
 			}
+
 		}
 
 		/*funcao eh chamada assim que o personagem morre e o jogo reseta*/

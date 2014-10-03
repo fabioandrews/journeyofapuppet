@@ -81,8 +81,27 @@ public class Personagem : MonoBehaviour
 
 					}
 				}
+				else if (col.gameObject.name.CompareTo("campopersonagemMorreDeCaidaInfinita") != 0) 
+				{
+					//o personagem caiu em alguma parte do estagio e deveria morrer com isso. O jogador tem de reiniciar a fase
+					Application.LoadLevel(Application.loadedLevel);
+					//Debug.Log("caiu no buraco");
+					
+				}
 			}
 		}
+
+		/*funcao eh chamada assim que o personagem morre e o jogo reseta*/
+		void Awake() 
+		{
+			//apos o reset da cena, queremos que os tiles permaneçam na mesma posicao
+			/*GameObject[] tilesDoPuzzle = GameObject.FindGameObjectsWithTag("tile");
+			for (int i = 0; i < tilesDoPuzzle.Length; i++) 
+			{
+				DontDestroyOnLoad(tilesDoPuzzle[i]);
+			}*/
+		}
+
 		void OnTriggerEnter2D(Collider2D other)
 		{
 			bateuEmAlgo = true;

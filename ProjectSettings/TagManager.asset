@@ -3,6 +3,10 @@
 --- !u!78 &1
 TagManager:
   tags:
+  - tile1
+  - tile2
+  - tile3
+  - tile4
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

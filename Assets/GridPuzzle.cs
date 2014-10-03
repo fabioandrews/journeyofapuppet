@@ -222,6 +222,7 @@ namespace AssemblyCSharp
 						break;
 					}
 				}
+				pegarPosicoesIniciaisDosTiles();
 			}
 			else//NOVO CASO O ARRAY JA TENHA SIDO CRIADO
 			{
@@ -292,6 +293,13 @@ namespace AssemblyCSharp
 					}
 				}
 				
+				for(int i = 0; i < tiles.Length; i++)
+				{
+					Debug.Log("mudar tile:" + tiles[i].getNome() + "para posiçao " + posicoesDosTiles[i]);
+					Tile umTile = tiles[i];
+					umTile.transform.position = posicoesDosTiles[i];
+				}
+				
 			}
 			
 			
@@ -336,7 +344,7 @@ namespace AssemblyCSharp
 			
 		}
 		
-		public void pegarPosicoesDosTilesAntesDeRestartCena()//NOVO MUDEI 
+		public void pegarPosicoesIniciaisDosTiles()//NOVO MUDEI 
 		{
 			if(tiles != null)
 			{
@@ -364,6 +372,15 @@ namespace AssemblyCSharp
 					}
 				}
 				
+				
+			}
+			
+		}
+		
+		public void pegarPosicoesAntesRestast()
+		{
+			if(tiles != null)
+			{
 				//falta pegar os nomes dos tiles em ordem
 				nomesDosTilesEmOrdem = new String[tiles.Length];
 				for(int j = 0; j < tiles.Length; j++)
@@ -375,8 +392,6 @@ namespace AssemblyCSharp
 			}
 			
 		}
-		
-		
 	}
 }
 

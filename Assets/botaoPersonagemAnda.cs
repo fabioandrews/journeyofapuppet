@@ -6,7 +6,7 @@ namespace AssemblyCSharp
 public class botaoPersonagemAnda : MonoBehaviour 
 {
 	public Personagem fantasminha;
-	public Camera cameraPrincipal;
+	public CameraVisaoDoEstagio cameraPrincipal;
 	// Use this for initialization
 	public GridPuzzle puzzle;//NOVO ATRIBUTO PRO BOTAO
 	void Start () {
@@ -17,6 +17,7 @@ public class botaoPersonagemAnda : MonoBehaviour
 	{
 			puzzle.pegarPosicoesAntesRestast();
 			cameraPrincipal.gameObject.transform.parent = fantasminha.gameObject.transform; //a camera agora vai seguir o personagem. Entao ele vira pai da camera principal
+			cameraPrincipal.fazerCameraVoltarAPosicaoInicial();
 			//Camera.SetupCurrent(cameraPersonagemAnda);
 			fantasminha.fazerAndar();
 	}

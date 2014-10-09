@@ -29,6 +29,8 @@ public class Personagem : MonoBehaviour
 	public BalaoDeFala balaoDeFala;//NOVO balao que fica seguindo personagem
 	public PopupWindowGameOver popupGameOver;//NOVO popup de game over
 	public AudioClip sfxBatida;//NOVO sfx batida
+	public AudioClip musicaVitoria;
+	public AudioClip musicaDeFundo;
 
 	// Use this for initialization
 	void Start () 
@@ -48,6 +50,11 @@ public class Personagem : MonoBehaviour
 		{
 				spriteRenderer.sprite = spritePersonagemComum; // set the sprite to sprite1
 		}
+		
+		audio.clip = musicaDeFundo;
+		audio.loop = true;
+		audio.Play(0);
+			
 	}
 
 	public void fazerAndar()
@@ -56,7 +63,6 @@ public class Personagem : MonoBehaviour
 		deveAndar = true;
 		//devemos setar as acoes que serao realizadas com o tempo tambem
 		acoes = puzzle.pegarOrdemDasAcoes();
-
 
 	}
 
@@ -88,8 +94,9 @@ public class Personagem : MonoBehaviour
 
 					}
 				}
-				else if (col.gameObject.name.CompareTo("campopersonagemMorreDeCaidaInfinita") == 0) 
+				else if (col.gameObject.name.CompareTo("campoPersonagemMorreDeCaidaInfinita") == 0) 
 				{
+					Debug.Log("personagem encostou no buraco");
 					balaoDeFala.personagemEmMomentoDeAcao = true;
 					balaoDeFala.StartCoroutine("showBaloonOnImpact", "buraco");
 					popupGameOver.mostrarPopupGameOver = true;
@@ -102,6 +109,12 @@ public class Personagem : MonoBehaviour
 				else if(col.gameObject.name.CompareTo("finish") == 0)
 				{
 					//musiquinha de vitoria serah tocada
+					popupGameOver.mostrarCenaDeFinalDeFase = true;
+					popupGameOver.mostrarPopupGameOver = true;
+					audio.clip = musicaVitoria;
+					audio.loop = true;
+					audio.Play(0);
+
 
 				}
 

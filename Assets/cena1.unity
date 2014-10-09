@@ -424,6 +424,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mostrarPopupGameOver: 0
+  textoDoBalao: {fileID: 0}
+  mostrarCenaDeFinalDeFase: 0
 --- !u!4 &505532074
 Transform:
   m_ObjectHideFlags: 0
@@ -863,9 +865,10 @@ GameObject:
   - 4: {fileID: 1146199927}
   - 212: {fileID: 1146199926}
   - 58: {fileID: 1146199925}
-  - 50: {fileID: 1146199924}
   - 114: {fileID: 1146199928}
   - 82: {fileID: 1146199929}
+  - 61: {fileID: 1146199930}
+  - 50: {fileID: 1146199924}
   m_Layer: 0
   m_Name: ghostSheet_0
   m_TagString: Untagged
@@ -883,7 +886,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 1
-  m_FixedAngle: 0
+  m_FixedAngle: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -894,7 +897,7 @@ CircleCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1146199923}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Radius: .34047842
@@ -919,7 +922,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300002, guid: ce066cf1691a4b14fb04956d0620cdb4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0b50160b4c213934ca0510a65796b2f5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1146199927
 Transform:
@@ -945,11 +948,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbbf6107890642f42bdfbce29764286a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spritePersonagemComum: {fileID: 21300002, guid: ce066cf1691a4b14fb04956d0620cdb4,
+  spritePersonagemComum: {fileID: 21300000, guid: 0b50160b4c213934ca0510a65796b2f5,
     type: 3}
-  spritePersonagemMorreu: {fileID: 21300002, guid: 851052e4083a709438e8e815f9bf38b0,
+  spritePersonagemMorreu: {fileID: 21300000, guid: 986b3c3a6cb97ea42850b79903e021ce,
     type: 3}
-  spritePersonagemAtacou: {fileID: 21300020, guid: ce066cf1691a4b14fb04956d0620cdb4,
+  spritePersonagemAtacou: {fileID: 21300000, guid: 3c83e962f17f6574999046d4595a7f81,
     type: 3}
   displacement: {x: .0199999996, y: 0, z: 0}
   bateuEmAlgo: 0
@@ -958,6 +961,8 @@ MonoBehaviour:
   balaoDeFala: {fileID: 1292624898}
   popupGameOver: {fileID: 505532073}
   sfxBatida: {fileID: 8300000, guid: d4e1b316b872b4b47b8ea1f7ef4973c0, type: 3}
+  musicaVitoria: {fileID: 8300000, guid: 1b810bb536c90b14fafb5eb98a8ba0c0, type: 3}
+  musicaDeFundo: {fileID: 8300000, guid: d3d46996c116053468e98690a7b06626, type: 3}
 --- !u!82 &1146199929
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1016,6 +1021,17 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!61 &1146199930
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1146199923}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Size: {x: .839999974, y: 1.5}
+  m_Center: {x: 0, y: 0}
 --- !u!1 &1292624897
 GameObject:
   m_ObjectHideFlags: 0
@@ -1291,7 +1307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fantasminha: {fileID: 1146199928}
-  cameraPrincipal: {fileID: 954559457}
+  cameraPrincipal: {fileID: 954559453}
   puzzle: {fileID: 804724797}
 --- !u!212 &1914578769
 SpriteRenderer:

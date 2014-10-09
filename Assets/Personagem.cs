@@ -30,7 +30,7 @@ public class Personagem : MonoBehaviour
 	public PopupWindowGameOver popupGameOver;//NOVO popup de game over
 	public AudioClip sfxBatida;//NOVO sfx batida
 	public AudioClip musicaVitoria;
-	public AudioClip musicaDeFundo;
+	public botaoPersonagemAnda botaoFazPersonagemAndar;
 
 	// Use this for initialization
 	void Start () 
@@ -51,9 +51,9 @@ public class Personagem : MonoBehaviour
 				spriteRenderer.sprite = spritePersonagemComum; // set the sprite to sprite1
 		}
 		
-		audio.clip = musicaDeFundo;
+		/*audio.clip = musicaDeFundo;
 		audio.loop = true;
-		audio.Play(0);
+		audio.Play(0);*/
 			
 	}
 
@@ -112,9 +112,12 @@ public class Personagem : MonoBehaviour
 					//musiquinha de vitoria serah tocada
 					popupGameOver.mostrarCenaDeFinalDeFase = true;
 					popupGameOver.mostrarPopupGameOver = true;
-					audio.clip = musicaVitoria;
+					botaoFazPersonagemAndar.audio.clip = musicaVitoria;
+					botaoFazPersonagemAndar.audio.loop = true;
+					botaoFazPersonagemAndar.audio.Play (0);
+					/*audio.clip = musicaVitoria;
 					audio.loop = true;
-					audio.Play(0);
+					audio.Play(0);*/
 
 
 				}

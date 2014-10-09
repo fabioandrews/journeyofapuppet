@@ -612,7 +612,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84a040bdb6d19094ba5d894aa46b9e14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 20
+  posicaoDiretaMaximo: 70
+  posicaoEsquerdaMaximo: 0
+  posicaoCimaMaximo: 3
+  posicaoBaixoMaximo: 0
 --- !u!81 &954559454
 AudioListener:
   m_ObjectHideFlags: 0
@@ -962,7 +966,7 @@ MonoBehaviour:
   popupGameOver: {fileID: 505532073}
   sfxBatida: {fileID: 8300000, guid: d4e1b316b872b4b47b8ea1f7ef4973c0, type: 3}
   musicaVitoria: {fileID: 8300000, guid: 1b810bb536c90b14fafb5eb98a8ba0c0, type: 3}
-  musicaDeFundo: {fileID: 8300000, guid: d3d46996c116053468e98690a7b06626, type: 3}
+  botaoFazPersonagemAndar: {fileID: 0}
 --- !u!82 &1146199929
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1329,7 +1333,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9da48b91206fd5543a673c681123de48, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 461ac2b2cea14e64d962856e8d75dabf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1914578770
 Transform:

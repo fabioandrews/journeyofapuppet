@@ -96,6 +96,7 @@ public class Personagem : MonoBehaviour
 				}
 				else if (col.gameObject.name.CompareTo("campoPersonagemMorreDeCaidaInfinita") == 0) 
 				{
+					spriteRenderer.sprite = null;
 					Debug.Log("personagem encostou no buraco");
 					balaoDeFala.personagemEmMomentoDeAcao = true;
 					balaoDeFala.StartCoroutine("showBaloonOnImpact", "buraco");

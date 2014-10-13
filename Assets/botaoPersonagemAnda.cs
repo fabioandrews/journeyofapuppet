@@ -18,6 +18,7 @@ public class botaoPersonagemAnda : MonoBehaviour
 			puzzle.pegarPosicoesAntesRestast();
 			cameraPrincipal.gameObject.transform.parent = fantasminha.gameObject.transform; //a camera agora vai seguir o personagem. Entao ele vira pai da camera principal
 			cameraPrincipal.fazerCameraVoltarAPosicaoInicial();
+			cameraPrincipal.fazerCameraNaoPoderSerMaisControladaPeloUsuario();
 			//Camera.SetupCurrent(cameraPersonagemAnda);
 			fantasminha.fazerAndar();
 	}

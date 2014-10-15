@@ -25,7 +25,6 @@ public class PopupWindowGameOver : MonoBehaviour {
 					tituloDoPopup = "Fim de Fase";
 			}
 
-			Debug.Log("mostrar popup game over = true");
 			GUI.Window ( 247879709, _quitWindowRect, QuitWindowFunction, tituloDoPopup);
 		}
 	}

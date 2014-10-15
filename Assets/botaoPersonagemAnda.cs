@@ -8,7 +8,7 @@ public class botaoPersonagemAnda : MonoBehaviour
 	public Personagem fantasminha;
 	public CameraVisaoDoEstagio cameraPrincipal;
 	// Use this for initialization
-	public GridPuzzle puzzle;//NOVO ATRIBUTO PRO BOTAO
+	public Puzzle_by_jandson puzzle;//NOVO ATRIBUTO PRO BOTAO
 	void Start () {
 	}
 	

@@ -17,7 +17,7 @@ public class Personagem : MonoBehaviour
 	public bool deveAndar;
 	float tempoAteProximaAcaoDoBoneco; //tempo que se passou desde o comeco da acao do boneco
 	int delay=1;//one seconds delay.Delay dado ate proxima acao do boneco
-	public GridPuzzle puzzle;
+	public Puzzle_by_jandson puzzle;
 	String[] acoes;
 	int percorredorAcoes = 0;
 	GameObject gameObjectQueBonecoColidiuAntesDaAcao; //sempre que o boneco estiver perto de algum obstaculo, esse objeto sera modificado
@@ -35,6 +35,8 @@ public class Personagem : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+			String nomeLevel = Application.loadedLevelName;
+			Debug.Log ("nome do level:" + nomeLevel);
 		bateuEmAlgo = false;
 		deveAndar = false;
 		//a acao do boneco comeca do start
@@ -62,7 +64,7 @@ public class Personagem : MonoBehaviour
 		//transform.Translate (new Vector2 (0.1f, 0.0f));
 		deveAndar = true;
 		//devemos setar as acoes que serao realizadas com o tempo tambem
-		acoes = puzzle.pegarOrdemDasAcoes();
+		acoes = puzzle.getAcoesNaOrdem();
 
 	}
 
@@ -157,15 +159,15 @@ public class Personagem : MonoBehaviour
 	void realizarProximaAcao()
 	{
 			string acao = acoes[percorredorAcoes];
-			if(acao.CompareTo("pularbaixo") == 0)
+			if(acao.CompareTo("pular baixo") == 0)
 			{
 				rigidbody2D.AddForce(new Vector2(0.0f,150.0f));
 			}
-			else if(acao.CompareTo("pularalto") == 0)
+			else if(acao.CompareTo("pular alto") == 0)
 			{
 				rigidbody2D.AddForce(new Vector2(0.0f,300.0f));
 			}
-			else if(acao.CompareTo("subirescada") == 0)
+			else if(acao.CompareTo("subir escada") == 0)
 			{ 
 				if(gameObjectQueBonecoColidiuAntesDaAcao.name.Contains("escada") == true)
 				{

@@ -18,7 +18,7 @@ namespace AssemblyCSharp
 			static Tile[] tiles; //diz quais as acoes a serem executadas e em que ordem
 			static String [] nomesDosTilesEmOrdem;//NOVO vou armazenar os tiles antes do restart para manter eles na ordem
 			
-			static Vector3 [] posicoesDosTiles;
+		static Vector3[] posicoesDosTiles;
 				public GridPuzzle()
 				{
 				}

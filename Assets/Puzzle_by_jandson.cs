@@ -116,9 +116,9 @@ namespace AssemblyCSharp
 				for (int i = 1; i <= 9; i++)
 				{
 					ordem [i-1] = (Tile_by_jandson)GameObject.Find ("tile" + i).GetComponent<Tile_by_jandson> ();
-					Debug.Log(acoesDosTilesEmOrdem[i - 1]);
 				}// inicia referencia as tiles criadas
 
+				cenario = (Background_by_jandson)GameObject.Find ("background").GetComponent<Background_by_jandson> ();
 				cenario.setAcoes(acoesDosTilesEmOrdem);
 				cenario.inicializador();
 

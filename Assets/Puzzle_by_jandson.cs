@@ -10,6 +10,7 @@ namespace AssemblyCSharp
 		private static Background_by_jandson cenario;
 		static String [] acoesDosTilesEmOrdem;//NOVO vou armazenar os tiles antes do restart para manter eles na ordem
 		private static Vector3 [] posicoesDosTiles;
+		public Item_mover_blocos_livremente itemMoverBlocoLivremente;//NOVO preciso dele pra saber se o item estah ativo no modo normal
 
 		void Start()
 		{
@@ -144,25 +145,39 @@ namespace AssemblyCSharp
 				auxiliar.setAcao(entrada.getAcao());
 				entrada.setAcao(string_temp);
 				auxiliar = null;
+				if(cenario.getModoFacil() == false)
+				{
+					//tah no modo normal e ele ja mudou dois tiles de posiçao com o item?desativa o item, oras!
+					itemMoverBlocoLivremente.desativarItem();//item nao fica mais ativo em uma jogada
+				}
 			}
 		}
 
 		private void Changer_normal ( Tile_by_jandson entrada )
 		{
-			int temp = 0;
-			for (int i = 0; i < 9; i++)
+			if(itemMoverBlocoLivremente.jogadorUsouItem() == true)
 			{
-				if (entrada == ordem[i])
-				{temp = i;}
+				Changer_easy(entrada);//puzzle funciona como modo facil
 			}
-			if (temp % 3 < 2 && ordem [temp + 1].getAcao () == "")
-			{ordem[temp + 1].setAcao(ordem[temp].getAcao());ordem[temp].setAcao("");}
-			else if (temp % 3 > 0 && ordem [temp - 1].getAcao () == "")
-			{ordem[temp - 1].setAcao(ordem[temp].getAcao());ordem[temp].setAcao("");}
-			else if (temp > 2 && ordem [temp - 3].getAcao () == "")
-			{ordem[temp - 3].setAcao(ordem[temp].getAcao());ordem[temp].setAcao("");}
-			else if (temp < 6 && ordem [temp + 3].getAcao () == "")
-			{ordem[temp + 3].setAcao(ordem[temp].getAcao());ordem[temp].setAcao("");}
+			else
+			{
+				int temp = 0;
+				for (int i = 0; i < 9; i++)
+				{
+					if (entrada == ordem[i])
+					{temp = i;}
+				}
+				if (temp % 3 < 2 && ordem [temp + 1].getAcao () == "")
+				{ordem[temp + 1].setAcao(ordem[temp].getAcao());ordem[temp].setAcao("");}
+				else if (temp % 3 > 0 && ordem [temp - 1].getAcao () == "")
+				{ordem[temp - 1].setAcao(ordem[temp].getAcao());ordem[temp].setAcao("");}
+				else if (temp > 2 && ordem [temp - 3].getAcao () == "")
+				{ordem[temp - 3].setAcao(ordem[temp].getAcao());ordem[temp].setAcao("");}
+				else if (temp < 6 && ordem [temp + 3].getAcao () == "")
+				{ordem[temp + 3].setAcao(ordem[temp].getAcao());ordem[temp].setAcao("");}
+
+			}
+
 		}
 
 		// Update is called once per frame

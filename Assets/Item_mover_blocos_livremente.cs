@@ -14,7 +14,7 @@ public class Item_mover_blocos_livremente : MonoBehaviour {
 		if(sabeSeEstahJogandoNoNivelNormal.getModoFacil() == false)
 		{
 			//jogador joga no modo normal...
-			possuiItem = true;
+			possuiItem = false;
 			itemEstahAtivo = false;
 			mudarIconeDoItem();
 		}
@@ -74,7 +74,6 @@ public class Item_mover_blocos_livremente : MonoBehaviour {
 
 	void OnMouseDown()
 	{
-		Debug.Log("OnMouseDown ativado");
 		if(possuiItem == true)
 		{
 			this.toastDoJogo.setTextoToast("jogador usou item");
@@ -87,7 +86,17 @@ public class Item_mover_blocos_livremente : MonoBehaviour {
 		}
 		
 	}
-	
+
+	//funcao serah chamada por Timer, pois depois de 1 minuto e meio, o jogador ganha esse item
+	public void fazerJogadorGanharItem()
+	{
+		if(sabeSeEstahJogandoNoNivelNormal.getModoFacil() == false)
+		{
+			//jogador estah no modo normal...
+			this.possuiItem = true;
+			this.mudarIconeDoItem();
+		}
+	}
 	// Update is called once per frame
 	void Update () {
 		/*if(Input.GetMouseButtonDown(0))

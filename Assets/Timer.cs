@@ -7,6 +7,7 @@ public class Timer : MonoBehaviour
 	private int horas;
 	private int minutos;
 	public GUIText timer;
+	public Item_mover_blocos_livremente itemQueMoveOsBlocos;
 
 	void Start()
 	{
@@ -47,10 +48,11 @@ public class Timer : MonoBehaviour
 				}
 
 				timer.text = horas.ToString () + ":" + minutosEmString + ":" + segundosEmString;
-
-			if(minutos == 1 && segundos > 30)
+			int segundosTotais = minutos * 60;
+			if((segundosTotais + segundos) % 90 == 0)
 			{
 				//eh para dar o item ao usuario. Para isso, Timer deve conhecer a classe do item que phillip estah criando
+				itemQueMoveOsBlocos.fazerJogadorGanharItem();
 			}
 		}
 	}

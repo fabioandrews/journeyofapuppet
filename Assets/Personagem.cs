@@ -65,12 +65,11 @@ public class Personagem : MonoBehaviour
 		deveAndar = true;
 		//devemos setar as acoes que serao realizadas com o tempo tambem
 		acoes = puzzle.getAcoesNaOrdem();
-
 	}
 
 	void OnCollisionEnter2D(Collision2D col) 
 		{
-			if (col.gameObject.name.CompareTo("chao") != 0) 
+			if (col.gameObject.name.CompareTo("chao") != 0 && col.gameObject.name.Contains("background") == false ) 
 			{
 				//o personagem estah o tempo todo batendo no chao, por isso ele n conta
 				bateuEmAlgo = true;

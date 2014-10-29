@@ -158,11 +158,7 @@ public class Personagem : MonoBehaviour
 	void realizarProximaAcao()
 	{
 			string acao = acoes[percorredorAcoes];
-			if(acao.CompareTo("pular baixo") == 0)
-			{
-				rigidbody2D.AddForce(new Vector2(0.0f,150.0f));
-			}
-			else if(acao.CompareTo("pular alto") == 0)
+			if(acao.CompareTo("pular alto") == 0)
 			{
 				rigidbody2D.AddForce(new Vector2(0.0f,300.0f));
 			}

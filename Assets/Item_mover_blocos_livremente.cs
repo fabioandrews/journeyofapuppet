@@ -76,7 +76,7 @@ public class Item_mover_blocos_livremente : MonoBehaviour {
 	{
 		if(possuiItem == true)
 		{
-			this.toastDoJogo.setTextoToast("Item usado: mova 2 peças livremente");
+			this.toastDoJogo.setTextoToast("Eita pau! Agora você pode mover 2 peças livremente por 2 vezes!");
 			this.toastDoJogo.setMostrarToast(true);
 			//usuario possui item
 			itemEstahAtivo = true;

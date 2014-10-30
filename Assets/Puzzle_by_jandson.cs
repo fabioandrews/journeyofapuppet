@@ -11,6 +11,7 @@ namespace AssemblyCSharp
 		static String [] acoesDosTilesEmOrdem;//NOVO vou armazenar os tiles antes do restart para manter eles na ordem
 		private static Vector3 [] posicoesDosTiles;
 		public Item_mover_blocos_livremente itemMoverBlocoLivremente;//NOVO preciso dele pra saber se o item estah ativo no modo normal
+		public int contador_quantas_vezes_moveu_blocos_com_item = 0;//	NOVO 
 
 		void Start()
 		{
@@ -145,10 +146,19 @@ namespace AssemblyCSharp
 				auxiliar.setAcao(entrada.getAcao());
 				entrada.setAcao(string_temp);
 				auxiliar = null;
-				if(cenario.getModoFacil() == false)
+				/*if(cenario.getModoFacil() == false)
+				{
+					Debug.Log("quantas vezes ja mudou bloco=" + contador_quantas_vezes_moveu_blocos_com_item);
+				}*/
+				if(cenario.getModoFacil() == false && contador_quantas_vezes_moveu_blocos_com_item < 1)
+				{
+					contador_quantas_vezes_moveu_blocos_com_item = contador_quantas_vezes_moveu_blocos_com_item + 1;
+				}
+				else if(cenario.getModoFacil() == false && contador_quantas_vezes_moveu_blocos_com_item >= 1)
 				{
 					//tah no modo normal e ele ja mudou dois tiles de posiçao com o item?desativa o item, oras!
 					itemMoverBlocoLivremente.desativarItem();//item nao fica mais ativo em uma jogada
+					contador_quantas_vezes_moveu_blocos_com_item = 0;//reseta esse contador
 				}
 			}
 		}

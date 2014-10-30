@@ -162,7 +162,7 @@ public class Personagem : MonoBehaviour
 			{
 				rigidbody2D.AddForce(new Vector2(0.0f,300.0f));
 			}
-			else if(acao.CompareTo("subir escada") == 0)
+			else if(acao.CompareTo("escada") == 0)
 			{ 
 				if(gameObjectQueBonecoColidiuAntesDaAcao.name.Contains("escada") == true)
 				{

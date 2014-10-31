@@ -15,3 +15,5 @@ EditorBuildSettings:
     path: Assets/Game_scene1_2.unity
   - enabled: 1
     path: Assets/Game_scene1_3.unity
+  - enabled: 1
+    path: Assets/Game_scene1_4.unity

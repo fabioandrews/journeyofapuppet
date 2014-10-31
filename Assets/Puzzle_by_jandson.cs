@@ -166,6 +166,8 @@ namespace AssemblyCSharp
 					//tah no modo normal e ele ja mudou dois tiles de posiçao com o item?desativa o item, oras!
 					itemMoverBlocoLivremente.desativarItem();//item nao fica mais ativo em uma jogada
 					contador_quantas_vezes_moveu_blocos_com_item = 0;//reseta esse contador
+					TextoExplicaControleAtual explicacaoControleAtual = GameObject.Find("TextoExplicaControleAtual").GetComponent<TextoExplicaControleAtual>();
+					explicacaoControleAtual.alternarTextoExplicacaoControles();
 				}
 			}
 		}

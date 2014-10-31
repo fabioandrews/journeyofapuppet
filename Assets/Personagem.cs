@@ -148,10 +148,14 @@ public class Personagem : MonoBehaviour
 		void OnTriggerExit2D(Collider2D other)
 		{
 			if (other.gameObject.name.Contains ("escada") == true)  
-			{
+			{ 
+				//o personagem terminou de subir uma escada
 				personagemEstaSubindoEscada = false;
+				rigidbody2D.AddForce(new Vector2(20.0f,40.0f));
 				bateuEmAlgo = false; //o personagem pode andar novamente
 				gameObjectQueBonecoColidiuAntesDaAcao = null;
+				fazerTileDaProximaAcaoFicarHighlited();
+				Destroy(other.gameObject); //eu destruo a escada assim que o personagem sai dela. Senao ele ativava a proxima acao ainda na escada(lei da gravidade faz o personagem cair para a escada novamente apos subir nela, certo?)
 			}
 		}
 

@@ -40,9 +40,10 @@ public class Background_by_jandson : MonoBehaviour {
 			{
 				acoes = new string[9] {"pular alto", "pular alto", "pular alto", "atacar", "pular alto", "atacar", "atacar", "atacar",""};
 			}
-			else if(nomeDaCenaAtual == "Game_scene1_3")
+			else if(nomeDaCenaAtual == "Game_scene1_4")
 			{
-				acoes = new string[9] {"escada", "pular alto", "pular alto", "atacar", "pular alto", "atacar", "atacar", "atacar",""};
+				//detonado da fase: pula pula ataca escada escada pula ataca ataca
+				acoes = new string[9] {"pular alto", "pular alto", "atacar", "escada", "atacar", "escada", "atacar", "","pular alto"};
 			}
 			else
 			{

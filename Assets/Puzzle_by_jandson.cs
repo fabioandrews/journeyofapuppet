@@ -13,6 +13,11 @@ namespace AssemblyCSharp
 		public Item_mover_blocos_livremente itemMoverBlocoLivremente;//NOVO preciso dele pra saber se o item estah ativo no modo normal
 		public int contador_quantas_vezes_moveu_blocos_com_item = 0;//	NOVO 
 
+		public void resetarOrdemParaNovaFase()
+		{
+			ordem = null;
+		}
+
 		void Start()
 		{
 			/*if(ordem == null)
@@ -94,6 +99,8 @@ namespace AssemblyCSharp
 				
 			}*/
 		}
+
+
 
 		// Use this for initialization
 		void Awake ()

@@ -42,9 +42,29 @@ public class PopupWindowGameOver : MonoBehaviour {
 		GUIStyle centeredTextStyle = new GUIStyle("label");
 		centeredTextStyle.alignment=TextAnchor.MiddleCenter;
 		GUI.Label(new Rect(20, 40, larguraPopup - 40, 80),textoFraseFinal, centeredTextStyle);
-		if ( GUI.Button ( new Rect ( 10, 100, 150, 30 ), textoBotao1 ) && mostrarCenaDeFinalDeFase == false)
+		if ( GUI.Button ( new Rect ( 10, 100, 150, 30 ), textoBotao1 ))
 		{
-				Application.LoadLevel(Application.loadedLevel);
+				if(mostrarCenaDeFinalDeFase == false)
+				{
+					Application.LoadLevel(Application.loadedLevel);
+				}
+				else if(mostrarCenaDeFinalDeFase == true)
+				{
+					string nomeDaCenaAtual = Application.loadedLevelName;
+					string [] nomeDaCenaSeparadoPorUnderlines = nomeDaCenaAtual.Split('_');
+					string nivel_atual = nomeDaCenaSeparadoPorUnderlines[nomeDaCenaSeparadoPorUnderlines.Length - 1];
+					int nivelEmNumero = Int32.Parse(nivel_atual);
+					int novoNivel = nivelEmNumero + 1;
+					string nomeDaProximaCena = nomeDaCenaSeparadoPorUnderlines[0] + "_" + nomeDaCenaSeparadoPorUnderlines[1] +  "_" + novoNivel;
+					//LEMBRAR: PRA MUDAR DE MUNDO, nomeDaCenaSeparadoPorUnderlines[1] TEM DE MUDAR NESSA STRING
+					Background_by_jandson backgroundJandson = (Background_by_jandson) GameObject.Find("background").GetComponent<Background_by_jandson>();
+					backgroundJandson.resetarCenaSemGuardarPosicoesBlocos();
+					Puzzle_by_jandson puzzleJandson = (Puzzle_by_jandson) GameObject.Find("puzzle").GetComponent<Puzzle_by_jandson>();
+					puzzleJandson.resetarOrdemParaNovaFase();
+					Application.LoadLevel(nomeDaProximaCena);
+
+
+				}
 		}
 		if ( GUI.Button ( new Rect ( larguraPopup - 160, 100, 150, 30 ), textoBotao2 ))
 		{

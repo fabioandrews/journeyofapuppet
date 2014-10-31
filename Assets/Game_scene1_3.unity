@@ -1431,6 +1431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemMoverBlocoLivremente: {fileID: 213127954}
+  contador_quantas_vezes_moveu_blocos_com_item: 0
 --- !u!4 &1162331329
 Transform:
   m_ObjectHideFlags: 0

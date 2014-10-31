@@ -10,6 +10,11 @@ public class Background_by_jandson : MonoBehaviour {
 													   //Mas Awake seria chamado de novo ao fazer restart da fase(quando o boneco morre). 
 													   //Nao queremos isso! Jah fazemos inicializador() fora do Awake no Puzzle_by_jandson.cs(o else da funcao Awake() desse cs)
 
+	
+	public void resetarCenaSemGuardarPosicoesBlocos()
+	{
+		awake_deve_ser_chamado = true;
+	}
 	// Use this for initialization
 
 	public string[] getAcoes(){return acoes;}

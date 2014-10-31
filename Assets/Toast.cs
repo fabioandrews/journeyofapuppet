@@ -7,6 +7,7 @@ public class Toast : MonoBehaviour {
 	private string textoToast;
 	private float displayTime = 5.0f;
 	float alpha  = 0.5f;
+	private bool apagarToastImediatamente;
 
 
 
@@ -24,6 +25,11 @@ public class Toast : MonoBehaviour {
 		textoToast = novoValor;
 	}
 
+	public void resetarVisibilidadeDoToast()
+	{
+		this.alpha = 0.5f;
+	}
+
 
 
 	// Use this for initialization
@@ -37,10 +43,18 @@ public class Toast : MonoBehaviour {
 	}
 
 	void OnGUI()
-	{	
-		if ( mostrarToast == true )
+	{
+		if(apagarToastImediatamente == true)
 		{
-			
+			GUIStyle style = GUI.skin.label;
+			style.fontSize = 20;
+			style.normal.textColor = new Color(255, 0, 0, 0.0f);
+			mostrarToast = false;
+			apagarToastImediatamente = false;
+		}
+		else if ( mostrarToast == true )
+		{
+
 			GUIStyle style = GUI.skin.label;
 			style.fontSize = 20; // Set size of text to 20.
 			style.normal.textColor = new Color(255, 0, 0, alpha); // Set color to white w/alpha.

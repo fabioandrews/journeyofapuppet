@@ -26,7 +26,29 @@ public class Background_by_jandson : MonoBehaviour {
 		if (awake_deve_ser_chamado == true) 
 		{
 			inicio = new Tile_by_jandson[9];
-			acoes = new string[9] {"escada", "pular alto", "pular alto", "atacar", "pular alto", "atacar", "atacar", "atacar",""};
+			string nomeDaCenaAtual = Application.loadedLevelName;
+			//Debug.Log("nomedaCenaAtual=" + nomeDaCenaAtual);
+			if(nomeDaCenaAtual == "Game_scene1_1")
+			{
+				acoes = new string[9] {"pular alto", "pular alto", "pular alto", "pular alto", "", "pular alto", "pular alto", "pular alto","pular alto"};
+			}
+			else if(nomeDaCenaAtual == "Game_scene1_2")
+			{
+				acoes = new string[9] {"atacar", "pular alto", "pular alto", "atacar", "pular alto", "pular alto", "atacar", "atacar",""};
+			}
+			else if(nomeDaCenaAtual == "Game_scene1_3")
+			{
+				acoes = new string[9] {"pular alto", "pular alto", "pular alto", "atacar", "pular alto", "atacar", "atacar", "atacar",""};
+			}
+			else if(nomeDaCenaAtual == "Game_scene1_3")
+			{
+				acoes = new string[9] {"escada", "pular alto", "pular alto", "atacar", "pular alto", "atacar", "atacar", "atacar",""};
+			}
+			else
+			{
+				acoes = new string[9] {"pular alto", "pular alto", "pular alto", "pular alto", "", "pular alto", "pular alto", "pular alto","pular alto"};
+			}
+
 			for (int i = 1; i <= 9; i++)
 			{inicio [i-1] = (Tile_by_jandson)GameObject.Find ("tile" + i).GetComponent<Tile_by_jandson> ();}
 			inicializador ();

@@ -8,6 +8,7 @@ public class Timer : MonoBehaviour
 	private int minutos;
 	public GUIText timer;
 	public Item_mover_blocos_livremente itemQueMoveOsBlocos;
+	private bool jogadorJahRecebeuOItemNaJogatina = false;//ele ja recebeu o item antes?
 
 	void Start()
 	{
@@ -15,6 +16,7 @@ public class Timer : MonoBehaviour
 		minutos = 0;
 		segundos = 0;
 		StartCoroutine (aumentarOTempo());
+		jogadorJahRecebeuOItemNaJogatina = false;
 	}
 	
 	IEnumerator aumentarOTempo()
@@ -49,10 +51,15 @@ public class Timer : MonoBehaviour
 
 				timer.text = horas.ToString () + ":" + minutosEmString + ":" + segundosEmString;
 			int segundosTotais = minutos * 60;
-			if((segundosTotais + segundos) % 90 == 0)
+			if((segundosTotais + segundos) % 90 == 0 && jogadorJahRecebeuOItemNaJogatina == false)
 			{
 				//eh para dar o item ao usuario. Para isso, Timer deve conhecer a classe do item que phillip estah criando
+				Toast toastAvisaJogadorGanhouItem = (Toast) GameObject.Find("Toast").GetComponent<Toast>();
+				toastAvisaJogadorGanhouItem.resetarVisibilidadeDoToast();
+				toastAvisaJogadorGanhouItem.setTextoToast("Sua cuca tá pegando fogo? Vou te dar um item pra ajudar!");
+				toastAvisaJogadorGanhouItem.setMostrarToast(true);
 				itemQueMoveOsBlocos.fazerJogadorGanharItem();
+				this.jogadorJahRecebeuOItemNaJogatina = true;//nao pode receber mais o item
 			}
 		}
 	}

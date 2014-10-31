@@ -466,6 +466,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 24
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: c5135ad36c8b0fd498be29f199063f6f, type: 2}
+      propertyPath: itemQueMoveOsBlocos
+      value: 
+      objectReference: {fileID: 438763306}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c5135ad36c8b0fd498be29f199063f6f, type: 2}
   m_RootGameObject: {fileID: 1858775848}
@@ -1086,6 +1090,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemMoverBlocoLivremente: {fileID: 438763306}
+  contador_quantas_vezes_moveu_blocos_com_item: 0
 --- !u!212 &433177386
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4963,7 +4968,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: {fileID: 1858775850}
-  itemQueMoveOsBlocos: {fileID: 0}
+  itemQueMoveOsBlocos: {fileID: 438763306}
 --- !u!132 &1858775850
 GUIText:
   m_ObjectHideFlags: 0

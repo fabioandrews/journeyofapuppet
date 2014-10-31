@@ -55,8 +55,7 @@ public class Personagem : MonoBehaviour
 		
 		/*audio.clip = musicaDeFundo;
 		audio.loop = true;
-		audio.Play(0);*/
-			
+		audio.Play(0);*/	
 	}
 
 	public void fazerAndar()
@@ -65,6 +64,7 @@ public class Personagem : MonoBehaviour
 		deveAndar = true;
 		//devemos setar as acoes que serao realizadas com o tempo tambem
 		acoes = puzzle.getAcoesNaOrdem();
+		fazerTileDaProximaAcaoFicarHighlited();
 	}
 
 	void OnCollisionEnter2D(Collision2D col) 
@@ -158,6 +158,7 @@ public class Personagem : MonoBehaviour
 	void realizarProximaAcao()
 	{
 			string acao = acoes[percorredorAcoes];
+			Debug.Log("acao:" + acao);
 			if(acao.CompareTo("pular alto") == 0)
 			{
 				rigidbody2D.AddForce(new Vector2(0.0f,300.0f));
@@ -190,6 +191,7 @@ public class Personagem : MonoBehaviour
 				//caso o personagem esteja suindo a escada, eh melhor fazer ele terminar a acao antes de permitir que ele ande p frente novamente
 				bateuEmAlgo = false;
 				gameObjectQueBonecoColidiuAntesDaAcao = null;
+				fazerTileDaProximaAcaoFicarHighlited();
 			}
 			else if(personagemVaiAtacarOMonstro)
 			{ 
@@ -208,6 +210,7 @@ public class Personagem : MonoBehaviour
 			personagemVaiAtacarOMonstro = false;
 			bateuEmAlgo = false;
 			gameObjectQueBonecoColidiuAntesDaAcao = null;
+			fazerTileDaProximaAcaoFicarHighlited();
 		}
 
 
@@ -271,6 +274,60 @@ public class Personagem : MonoBehaviour
 			rigidbody2D.AddForce(new Vector2(0.0f,50.0f));
 		}*/
 			
+		}
+
+		//com base na proxima acao e no percorredor de acoes, vou contornar o tile da proxima acao
+		private void fazerTileDaProximaAcaoFicarHighlited()
+		{
+			string acao = acoes[percorredorAcoes];
+			GameObject gameObjectTileQueVaiFicarHighlited = GameObject.Find("tile" + (percorredorAcoes + 1));
+			SpriteRenderer spriteRendererDoTile = gameObjectTileQueVaiFicarHighlited.GetComponent<SpriteRenderer> ();
+			string nomeDoSpriteParaHighlight = "tile";
+			if (acao == "pular alto") 
+			{
+				nomeDoSpriteParaHighlight = nomeDoSpriteParaHighlight + "PularAlto";
+			}
+			else if (acao == "escada") 
+			{
+				nomeDoSpriteParaHighlight = nomeDoSpriteParaHighlight + "Escada";
+			}
+			else if (acao == "atacar") 
+			{
+				nomeDoSpriteParaHighlight = nomeDoSpriteParaHighlight + "Atacar";
+			}
+			nomeDoSpriteParaHighlight = nomeDoSpriteParaHighlight + "Highlight";
+			Sprite spriteDeTileHighlighned = Resources.Load<Sprite>(nomeDoSpriteParaHighlight);
+			spriteRendererDoTile.sprite = spriteDeTileHighlighned;
+
+			fazerTileDaAcaoAnteriorNaoFicarMaisHighlited();
+
+		}
+
+		private void fazerTileDaAcaoAnteriorNaoFicarMaisHighlited()
+		{
+			if (percorredorAcoes > 0)  
+			{
+				//se for a primeira acao, nao existe anterior, neh?
+				string acao = acoes[percorredorAcoes - 1];
+				GameObject gameObjectTileQueVaiFicarHighlited = GameObject.Find("tile" + (percorredorAcoes));
+				SpriteRenderer spriteRendererDoTile = gameObjectTileQueVaiFicarHighlited.GetComponent<SpriteRenderer> ();
+				string nomeDoSpriteParaHighlight = "tile";
+				if (acao == "pular alto") 
+				{
+					nomeDoSpriteParaHighlight = nomeDoSpriteParaHighlight + "PularAlto";
+				}
+				else if (acao == "escada") 
+				{
+					nomeDoSpriteParaHighlight = nomeDoSpriteParaHighlight + "Escada";
+				}
+				else if (acao == "atacar") 
+				{
+					nomeDoSpriteParaHighlight = nomeDoSpriteParaHighlight + "Atacar";
+				}
+				nomeDoSpriteParaHighlight = nomeDoSpriteParaHighlight;
+				Sprite spriteDeTileHighlighned = Resources.Load<Sprite>(nomeDoSpriteParaHighlight);
+				spriteRendererDoTile.sprite = spriteDeTileHighlighned;
+			}
 		}
 	 
 }

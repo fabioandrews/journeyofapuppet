@@ -30,4 +30,18 @@ public class TextoExplicaControleAtual : MonoBehaviour {
 			textoAtual = guiText.text;
 		}
 	}
+
+	public void alternarTextoExplicacaoControles()
+	{
+		if(textoAtual == "Clique apenas em uma peça perto do\ncanto vazio para\nfazer ela ficar no canto\nvazio")
+		{
+			guiText.text = "Clique em uma peça qualquer e\ndepois clique em\noutra para trocar a posiçao\ndelas";
+		}
+		else
+		{
+			guiText.text = "Clique apenas em uma peça perto do\ncanto vazio para\nfazer ela ficar no canto\nvazio";
+		}
+		
+		textoAtual = guiText.text;
+	}
 }

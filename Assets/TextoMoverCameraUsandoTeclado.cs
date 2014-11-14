@@ -4,17 +4,17 @@ namespace AssemblyCSharp
 	
 {
 public class TextoMoverCameraUsandoTeclado : MonoBehaviour {
-	Personagem personagem;
+		puppet_by_jandson personagem;
 	public 
 	// Use this for initialization
 	void Start () {
-		personagem = GameObject.Find("ghostSheet_0").GetComponent<Personagem>();
+			personagem = (puppet_by_jandson)GameObject.Find("Puppet").GetComponent<puppet_by_jandson>();
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		if (personagem.deveAndar == true) 
+		if (personagem.getWalk() == true) 
 		{
 			guiText.text = "";
 		}

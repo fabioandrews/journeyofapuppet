@@ -13,15 +13,10 @@ namespace AssemblyCSharp
 	
 		public Tile_by_jandson () {acao = "";}
 
-		public String getNome()
-		{
-			return nome;
-		}
+		public String getNome() {return nome;}
 
-		public void setNome(String nomeNovo)
-		{
-			this.nome = nomeNovo;
-		}
+		public void setNome(String nomeNovo) {this.nome = nomeNovo;}
+
 		public String getAcao () {return acao;}
 		
 		public void setAcao (String nova_acao)
@@ -67,8 +62,6 @@ namespace AssemblyCSharp
 	
 		}
 
-		void Awake () {
-			DontDestroyOnLoad (transform.gameObject);
-		}
+		void Awake () {DontDestroyOnLoad (transform.gameObject);}
 	}
 }

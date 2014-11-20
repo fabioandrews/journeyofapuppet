@@ -35,24 +35,24 @@ public class Background_by_jandson : MonoBehaviour {
 			//Debug.Log("nomedaCenaAtual=" + nomeDaCenaAtual);
 			if(nomeDaCenaAtual == "Game_scene1_1")
 			{
-				acoes = new string[9] {"pular alto", "pular alto", "pular alto", "pular alto", "", "pular alto", "pular alto", "pular alto","pular alto"};
+				acoes = new string[9] {"Pular", "Pular", "Pular", "Pular", "", "Pular", "Pular", "Pular","Pular"};
 			}
 			else if(nomeDaCenaAtual == "Game_scene1_2")
 			{
-				acoes = new string[9] {"atacar", "pular alto", "pular alto", "atacar", "pular alto", "pular alto", "atacar", "atacar",""};
+				acoes = new string[9] {"Atacar", "Pular", "Pular", "Atacar", "Pular", "Pular", "Atacar", "Atacar",""};
 			}
 			else if(nomeDaCenaAtual == "Game_scene1_3")
 			{
-				acoes = new string[9] {"pular alto", "pular alto", "pular alto", "atacar", "pular alto", "atacar", "atacar", "atacar",""};
+				acoes = new string[9] {"Pular", "Pular", "Pular", "Atacar", "Pular", "Atacar", "Atacar", "Atacar",""};
 			}
 			else if(nomeDaCenaAtual == "Game_scene1_4")
 			{
-				//detonado da fase: pula pula ataca escada escada pula ataca ataca
-				acoes = new string[9] {"pular alto", "pular alto", "atacar", "escada", "atacar", "escada", "atacar", "","pular alto"};
+				//detonado da fase: pula pula ataca Escada Escada pula ataca ataca
+				acoes = new string[9] {"Pular", "Pular", "Atacar", "Escada", "Atacar", "Escada", "Atacar", "","Pular"};
 			}
 			else
 			{
-				acoes = new string[9] {"pular alto", "pular alto", "pular alto", "pular alto", "", "pular alto", "pular alto", "pular alto","pular alto"};
+				acoes = new string[9] {"Pular", "Pular", "Pular", "Pular", "", "Pular", "Pular", "Pular","Pular"};
 			}
 
 			for (int i = 1; i <= 9; i++)

@@ -73,7 +73,7 @@ public class puppet_by_jandson : MonoBehaviour {
 						walk = false;
 						stair = true;
 						rigidbody2D.isKinematic = true;
-						//transform.position = new Vector2 (transform.position.x, transform.position.y + 0.09f);
+						transform.position = new Vector2 (transform.position.x, transform.position.y + 0.09f);
 						//rigidbody2D.AddForce(new Vector2(0.0f,700.0f));
 						break;
 						default:

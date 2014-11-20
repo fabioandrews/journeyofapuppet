@@ -489,7 +489,7 @@ GameObject:
   - 82: {fileID: 163567259}
   - 61: {fileID: 163567258}
   m_Layer: 0
-  m_Name: ghostSheet_0
+  m_Name: Puppet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3861,7 +3861,7 @@ Prefab:
       objectReference: {fileID: 1605983301}
     - target: {fileID: 100002, guid: a9ee1337f711369469b15c62035927ef, type: 2}
       propertyPath: m_Name
-      value: ghostSheet_0
+      value: Puppet
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: a9ee1337f711369469b15c62035927ef, type: 2}
       propertyPath: textoDoBalao

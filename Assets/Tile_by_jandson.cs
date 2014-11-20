@@ -8,6 +8,7 @@ namespace AssemblyCSharp
 		private Sprite[] sprites;
 		private String acao;
 		private String nome;
+		private bool highlight;
 
 		private SpriteRenderer spriteRenderer;
 	
@@ -26,24 +27,10 @@ namespace AssemblyCSharp
 			switch (acao)
 			{
 				//Melhor por o load aqui, pois ele so e feito 1x na vida, entao nao precisa carregar todos sprites
-				case "pular alto":
-					sprites = Resources.LoadAll<Sprite> ("tilePularAlto");
-					spriteRenderer.sprite = sprites[0];
-					break;
-				case "atacar":
-					sprites = Resources.LoadAll<Sprite> ("tileAtacar");
-					spriteRenderer.sprite = sprites[0];
-					break;
-				case "pular baixo":
-					sprites = Resources.LoadAll<Sprite> ("tilePularBaixo");
-					spriteRenderer.sprite = sprites[0];
-					break;
-				case "andar":
-					sprites = Resources.LoadAll<Sprite> ("Walk");
-					spriteRenderer.sprite = sprites[0];
-					break;
-				case "escada":
-					sprites = Resources.LoadAll<Sprite> ("tileEscada");
+				case "Pular":
+				case "Atacar":
+				case "Escada":
+					sprites = Resources.LoadAll<Sprite> ("tile"+acao);
 					spriteRenderer.sprite = sprites[0];
 					break;
 				default:
@@ -52,10 +39,33 @@ namespace AssemblyCSharp
 			}
 		}
 
+		public void highlights ()
+		{
+			if (highlight == false)
+			{
+				highlight = true;
+				sprites = Resources.LoadAll<Sprite> ("tile" + acao + "Highlight");
+				spriteRenderer.sprite = sprites [0];
+			}
+			else
+			{
+				highlight = false;
+				sprites = Resources.LoadAll<Sprite> ("tile" + acao);
+				spriteRenderer.sprite = sprites [0];
+			}
+
+		}
+
+
 		private void OnMouseDown() {my_grid.Changer (this);}
 
 		// Use this for initialization
-		void Start () {my_grid = (Puzzle_by_jandson)GameObject.Find ("puzzle").GetComponent<Puzzle_by_jandson> (); DontDestroyOnLoad (transform.gameObject);}
+		void Start ()
+		{
+			my_grid = (Puzzle_by_jandson)GameObject.Find ("puzzle").GetComponent<Puzzle_by_jandson> ();
+			highlight = false;
+			DontDestroyOnLoad (transform.gameObject);
+		}
 	
 	// Update is called once per frame
 		void Update () {

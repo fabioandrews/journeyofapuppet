@@ -6,20 +6,18 @@ namespace AssemblyCSharp
 	public class Tile_by_jandson : MonoBehaviour {
 		private Puzzle_by_jandson my_grid;
 		private Sprite[] sprites;
-		private String acao;
-		private String nome;
-		private bool highlight;
+		private String acao; //basicamente o nome, que define a açao correspondente a tile(ordem nao importa)
+		private bool highlight; //tile com highlight = true, sem = false
 
 		private SpriteRenderer spriteRenderer;
 	
 		public Tile_by_jandson () {acao = "";}
 
-		public String getNome() {return nome;}
-
-		public void setNome(String nomeNovo) {this.nome = nomeNovo;}
-
+		//retorna para grid, para trocar acao,
+		//para o personagem saber quais acoes ele deve realizar
 		public String getAcao () {return acao;}
-		
+
+		//chamado enquanto o botao go nao e pressionado, define ou troca acoes e seus sprites
 		public void setAcao (String nova_acao)
 		{
 			acao = nova_acao;
@@ -30,7 +28,7 @@ namespace AssemblyCSharp
 				case "Pular":
 				case "Atacar":
 				case "Escada":
-					sprites = Resources.LoadAll<Sprite> ("tile"+acao);
+				sprites = Resources.LoadAll<Sprite> ("tile"+acao);
 					spriteRenderer.sprite = sprites[0];
 					break;
 				default:
@@ -39,24 +37,28 @@ namespace AssemblyCSharp
 			}
 		}
 
+		//chamado depois que botao go e pressionado, alterna entre com e sem highlight
+		//faz nada, caso seja acao vazia
 		public void highlights ()
 		{
-			if (highlight == false)
+			if (acao != "")
 			{
-				highlight = true;
-				sprites = Resources.LoadAll<Sprite> ("tile" + acao + "Highlight");
-				spriteRenderer.sprite = sprites [0];
+				if (highlight == false)
+				{
+					highlight = true;
+					sprites = Resources.LoadAll<Sprite> ("tile" + acao + "Highlight");
+					spriteRenderer.sprite = sprites [0];
+				}
+				else
+				{
+					highlight = false;
+					sprites = Resources.LoadAll<Sprite> ("tile" + acao);
+					spriteRenderer.sprite = sprites [0];
+				}
 			}
-			else
-			{
-				highlight = false;
-				sprites = Resources.LoadAll<Sprite> ("tile" + acao);
-				spriteRenderer.sprite = sprites [0];
-			}
-
 		}
 
-
+		//chama metodo de troca do grid
 		private void OnMouseDown() {my_grid.Changer (this);}
 
 		// Use this for initialization
@@ -68,9 +70,7 @@ namespace AssemblyCSharp
 		}
 	
 	// Update is called once per frame
-		void Update () {
-	
-		}
+		void Update () {}
 
 		void Awake () {DontDestroyOnLoad (transform.gameObject);}
 	}

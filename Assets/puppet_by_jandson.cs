@@ -4,77 +4,95 @@ namespace AssemblyCSharp
 
 {
 public class puppet_by_jandson : MonoBehaviour {
-		private Puzzle_by_jandson acoes;
-		private String[] ordem_final;
+		private Tile_by_jandson[] ordem_final;
 		private bool walk;
 		private bool stair;
 		private int index;
+		private PopupWindowGameOver gameOverWindow;
+
 		// Use this for initialization
 		void Start () {
 	
 		}
 
-		void Awake(){
-			acoes = (Puzzle_by_jandson)GameObject.Find ("puzzle").GetComponent<Puzzle_by_jandson> ();
+		void Awake()
+		{
+			ordem_final = new Tile_by_jandson[9];
+			for (int i = 1; i <= ordem_final.Length; i++)
+			{ordem_final [i-1] = (Tile_by_jandson)GameObject.Find ("tile" + i).GetComponent<Tile_by_jandson> ();}
 			walk = false;
 			stair = false;
 			index = 0;
+			gameOverWindow = (PopupWindowGameOver)GameObject.Find ("popupGameOver").GetComponent<PopupWindowGameOver> ();
 		}
 
-		public void setWalk(){walk = true;ordem_final = acoes.getAcoesNaOrdem ();}
+		//chamado apenas pelo botao go, e chamado apenas 1x
+		public void setWalk(){walk = true;ordem_final[index].highlights ();}
 
 		public bool getWalk() {return walk;}
 
+		//nas colisoes, verifica o inimigo que causou a colisao,
+		//se realizada a acao certa, tratar, senao, walk = false e chamar a janela de game over
 		void OnCollisionEnter2D (Collision2D col)
 		{
 			switch (col.gameObject.name)
 			{
 				case "Lobo":
-					switch (ordem_final[index])
+					switch (ordem_final[index].getAcao())
 					{
-						case "pular alto":
+						case "Pular":
 							rigidbody2D.AddForce(new Vector2(0.0f,320.0f));
+							if (index < ordem_final.Length){ordem_final[index].highlights ();}
 							index++;
+							if (index < ordem_final.Length){ordem_final[index].highlights ();}
 						break;
-						case "atacar":
+						case "Atacar":
 							GameObject.Destroy(col.gameObject);
+							if (index < ordem_final.Length){ordem_final[index].highlights ();}
 							index++;
+							if (index < ordem_final.Length){ordem_final[index].highlights ();}
 						break;
 						default:
+							walk = false;
+							index = 0;
+							gameOverWindow.mostrarPopupGameOver = true;
 						break;
 					}
 				break;
 				case "urso":
-					switch (ordem_final[index])
+					switch (ordem_final[index].getAcao())
 					{
-						case "atacar":
+						case "Atacar":
 							GameObject.Destroy(col.gameObject);
+							if (index < ordem_final.Length){ordem_final[index].highlights ();}
 							index++;
+							if (index < ordem_final.Length){ordem_final[index].highlights ();}
 						break;
 						default:
 						break;
 					}
 				break;
 				case "buraco":
-					switch (ordem_final[index])
+					switch (ordem_final[index].getAcao())
 					{
-						case "pular alto":
+						case "Pular":
 							rigidbody2D.AddForce(new Vector2(0.0f,630.0f));
+							if (index < ordem_final.Length){ordem_final[index].highlights ();}
 							index++;
+							if (index < ordem_final.Length){ordem_final[index].highlights ();}
 						break;
 						default:
 						break;
 					}
 				break;
 				case "escada":
-					switch (ordem_final[index])
+					switch (ordem_final[index].getAcao())
 					{
-					case "escada":
+					case "Escada":
 						walk = false;
 						stair = true;
 						rigidbody2D.isKinematic = true;
 						transform.position = new Vector2 (transform.position.x, transform.position.y + 0.09f);
-						//rigidbody2D.AddForce(new Vector2(0.0f,700.0f));
 						break;
 						default:
 						break;
@@ -90,6 +108,9 @@ public class puppet_by_jandson : MonoBehaviour {
 				rigidbody2D.isKinematic = false;
 				walk = true;
 				stair = false;
+				if (index < ordem_final.Length){ordem_final[index].highlights ();}
+				index++;
+				if (index < ordem_final.Length){ordem_final[index].highlights ();}
 			}
 		}
 

@@ -63,7 +63,7 @@ public class Personagem : MonoBehaviour
 		//transform.Translate (new Vector2 (0.1f, 0.0f));
 		deveAndar = true;
 		//devemos setar as acoes que serao realizadas com o tempo tambem
-		acoes = puzzle.getAcoesNaOrdem();
+		//acoes = puzzle.getAcoesNaOrdem();
 		fazerTileDaProximaAcaoFicarHighlited();
 	}
 

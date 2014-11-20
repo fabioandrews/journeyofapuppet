@@ -14,93 +14,9 @@ namespace AssemblyCSharp
 		public int contador_quantas_vezes_moveu_blocos_com_item = 0;//	NOVO 
 
 		public void resetarOrdemParaNovaFase()
-		{
-			ordem = null;
-		}
+		{ordem = null;}
 
-		void Start()
-		{
-			/*if(ordem == null)
-			{
-				ordem = new Tile_by_jandson[9];
-				nomesDosTilesEmOrdem = new String[9];
-				cenario = (Background_by_jandson)GameObject.Find ("background").GetComponent<Background_by_jandson> ();
-				for (int i = 1; i <= 9; i++)
-				{
-					ordem [i-1] = (Tile_by_jandson)GameObject.Find ("tile" + i).GetComponent<Tile_by_jandson> ();
-					int numTile = i - 1;
-					nomesDosTilesEmOrdem[i - 1] = "tile" + (numTile);
-					Tile_by_jandson tile = (Tile_by_jandson)GameObject.Find ("tile" + i).GetComponent<Tile_by_jandson> ();
-					tile.setNome("tile" + (numTile));
-				}// inicia referencia as tiles criadas
-				
-				pegarPosicoesIniciaisDosTiles();
-			}
-			else//NOVO CASO O ARRAY JA TENHA SIDO CRIADO
-			{
-				int quantosTilesExistemNaCena = 0;
-				String nomeTiles = "tile";
-				//primeiro vou saber quantos tiles existem na cena para saber o tamanho exato do meu array de tiles
-				for (int i = 1; i < 10; i++)  
-				{
-					//sao 9 tiles no total
-					nomeTiles = nomeTiles + i;
-					GameObject gameObjectDoTile = GameObject.Find(nomeTiles);
-					if(gameObjectDoTile != null)
-					{
-						//o tile existe na cena
-						quantosTilesExistemNaCena = quantosTilesExistemNaCena + 1;
-						nomeTiles = nomeTiles.Substring(0, nomeTiles.Length - 1); //tirei a ultima letra dessa string. Ficou so "tile"
-					}
-					else
-					{
-						//n tem mais nenhum tile na cena. Parar de procurar.
-						break;
-					}
-				}
-				
-				nomeTiles = "tile";
-				Tile_by_jandson[] novoArranjoTiles = new Tile_by_jandson[quantosTilesExistemNaCena];
-				
-				
-				for (int i = 1; i <= 9; i++)
-				{
-					ordem [i-1] = (Tile_by_jandson)GameObject.Find ("tile" + i).GetComponent<Tile_by_jandson> ();
-					int numTile = i - 1;
-					nomesDosTilesEmOrdem[i-1] = "tile" + (numTile);
-					Tile_by_jandson tile = (Tile_by_jandson)GameObject.Find ("tile" + i).GetComponent<Tile_by_jandson> ();
-					tile.setNome("tile" + (numTile));
-				}// inicia referencia as tiles criadas
-
-				novoArranjoTiles = ordem;
-				//agora eu devo fazer esses tiles ficarem na ordem desejada
-				ordem = new Tile_by_jandson[quantosTilesExistemNaCena];
-				int percorredorTiles = 0;
-				for(int l = 0; l < nomesDosTilesEmOrdem.Length; l++)
-				{
-					String umNome = nomesDosTilesEmOrdem[l];
-					for(int m = 0; m < novoArranjoTiles.Length; m++)
-					{
-						Tile_by_jandson umTile = novoArranjoTiles[m];
-						if(umNome.CompareTo(umTile.getNome()) == 0)
-						{
-							ordem[percorredorTiles] = umTile;
-							percorredorTiles = percorredorTiles + 1;
-						}
-					}
-				}
-				
-				for(int i = 0; i < ordem.Length; i++)
-				{
-					Debug.Log("mudar tile:" + ordem[i].getNome() + "para posiçao " + posicoesDosTiles[i]);
-					Tile_by_jandson umTile = ordem[i];
-					umTile.transform.position = posicoesDosTiles[i];
-				}
-				
-			}*/
-		}
-
-
+		void Start(){}
 
 		// Use this for initialization
 		void Awake ()
@@ -113,7 +29,7 @@ namespace AssemblyCSharp
 				for (int i = 1; i <= 9; i++)
 				{
 					ordem [i-1] = (Tile_by_jandson)GameObject.Find ("tile" + i).GetComponent<Tile_by_jandson> ();
-					int numTile = i - 1;
+					//int numTile = i - 1;
 					Tile_by_jandson umTile = (Tile_by_jandson)GameObject.Find ("tile" + i).GetComponent<Tile_by_jandson> ();
 					acoesDosTilesEmOrdem[i - 1] = umTile.getAcao();
 				}// inicia referencia as tiles criadas
@@ -153,10 +69,7 @@ namespace AssemblyCSharp
 				auxiliar.setAcao(entrada.getAcao());
 				entrada.setAcao(string_temp);
 				auxiliar = null;
-				/*if(cenario.getModoFacil() == false)
-				{
-					Debug.Log("quantas vezes ja mudou bloco=" + contador_quantas_vezes_moveu_blocos_com_item);
-				}*/
+
 				if(cenario.getModoFacil() == false && contador_quantas_vezes_moveu_blocos_com_item < 1)
 				{
 					contador_quantas_vezes_moveu_blocos_com_item = contador_quantas_vezes_moveu_blocos_com_item + 1;
@@ -203,17 +116,6 @@ namespace AssemblyCSharp
 		void Update () {
 		}
 
-		public String[] getAcoesNaOrdem()
-		{
-			String[] acoes = new String[ordem.Length];
-			for (int i = 0; i < ordem.Length; i++) 
-			{
-				acoes[i] = ordem[i].getAcao();
-			}
-
-			return acoes;
-		}
-
 		public void pegarPosicoesAntesRestast()
 		{
 			if(ordem != null)
@@ -226,39 +128,6 @@ namespace AssemblyCSharp
 				}
 				
 				DontDestroyOnLoad(this);
-			}
-			
-		}
-
-		public void pegarPosicoesIniciaisDosTiles()//NOVO MUDEI 
-		{
-			if(ordem != null)
-			{
-				//segunda vez que eh chamado, ou seja, no restart da fase.
-				String nomeTiles = "tile";
-				posicoesDosTiles = new Vector3[ordem.Length];
-				for (int i = 1; i < 10; i++)  
-				{
-					
-					//sao 9 tiles no total
-					nomeTiles = nomeTiles + i;
-					
-					GameObject gameObjectDoTile = GameObject.Find(nomeTiles);
-					if(gameObjectDoTile != null)
-					{
-						//o tile existe na cena
-						Vector3 posicaoTile = gameObjectDoTile.transform.position;
-						posicoesDosTiles[i - 1] = posicaoTile;
-						nomeTiles = nomeTiles.Substring(0, nomeTiles.Length - 1); //tirei a ultima letra dessa string. Ficou so "tile"
-					}
-					else
-					{
-						//n tem mais nenhum tile na cena. Parar de procurar.
-						break;
-					}
-				}
-				
-				
 			}
 			
 		}

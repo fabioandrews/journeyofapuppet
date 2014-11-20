@@ -14,11 +14,7 @@ public class TextoMoverCameraUsandoTeclado : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (personagem.getWalk() == true) 
-		{
-			guiText.text = "";
-		}
-		else
+		if (personagem.getWalk() == false)
 		{ 
 			guiText.text = "Use as setas do teclado para ver o estágio";
 		}

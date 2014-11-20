@@ -23,6 +23,7 @@ namespace AssemblyCSharp
 			puppet = (puppet_by_jandson)GameObject.Find("Puppet").GetComponent<puppet_by_jandson>();
 		}
 
+		//quando pressionado o botao go, destroi todas as possibilidades de cliques
 		private void OnMouseDown()
 		{
 			for (int i = 0; i < ordem.Length; i++) {Destroy(ordem[i].collider2D);}

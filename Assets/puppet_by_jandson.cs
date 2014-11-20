@@ -5,14 +5,13 @@ namespace AssemblyCSharp
 {
 public class puppet_by_jandson : MonoBehaviour {
 		private Tile_by_jandson[] ordem_final;
-		private bool walk;
-		private bool stair;
+		private bool walk;	//indica se esta andando
+		private bool stair; //indica se esta subindo escada
 		private int index;
-		private PopupWindowGameOver gameOverWindow;
+		private PopupWindowGameOver gameOverWindow; //referenciado agora internamente ao popupgameover
 
 		// Use this for initialization
 		void Start () {
-	
 		}
 
 		void Awake()
@@ -41,18 +40,23 @@ public class puppet_by_jandson : MonoBehaviour {
 					switch (ordem_final[index].getAcao())
 					{
 						case "Pular":
+							//tratamento para colisao com lobo, tile de pulo
 							rigidbody2D.AddForce(new Vector2(0.0f,320.0f));
+							//chama metodo de troca de highlight para a tile atual, e a prox, caso haja
 							if (index < ordem_final.Length){ordem_final[index].highlights ();}
 							index++;
 							if (index < ordem_final.Length){ordem_final[index].highlights ();}
 						break;
 						case "Atacar":
+							//tratamento para colisao com lobo, tile de ataque
 							GameObject.Destroy(col.gameObject);
+							//chama metodo de troca de highlight para a tile atual, e a prox, caso haja
 							if (index < ordem_final.Length){ordem_final[index].highlights ();}
 							index++;
 							if (index < ordem_final.Length){ordem_final[index].highlights ();}
 						break;
 						default:
+							//tratamento de gameover, personagem nao anda mais, e chama a janela de gameover
 							walk = false;
 							index = 0;
 							gameOverWindow.mostrarPopupGameOver = true;
@@ -63,12 +67,18 @@ public class puppet_by_jandson : MonoBehaviour {
 					switch (ordem_final[index].getAcao())
 					{
 						case "Atacar":
+							//tratamento para colisao com urso, tile de ataque
 							GameObject.Destroy(col.gameObject);
+							//chama metodo de troca de highlight para a tile atual, e a prox, caso haja
 							if (index < ordem_final.Length){ordem_final[index].highlights ();}
 							index++;
 							if (index < ordem_final.Length){ordem_final[index].highlights ();}
 						break;
 						default:
+							//tratamento de gameover, personagem nao anda mais, e chama a janela de gameover
+							walk = false;
+							index = 0;
+							gameOverWindow.mostrarPopupGameOver = true;
 						break;
 					}
 				break;
@@ -76,12 +86,18 @@ public class puppet_by_jandson : MonoBehaviour {
 					switch (ordem_final[index].getAcao())
 					{
 						case "Pular":
+							//tratamento para colisao com buraco, tile de pulo
 							rigidbody2D.AddForce(new Vector2(0.0f,630.0f));
+							//chama metodo de troca de highlight para a tile atual, e a prox, caso haja
 							if (index < ordem_final.Length){ordem_final[index].highlights ();}
 							index++;
 							if (index < ordem_final.Length){ordem_final[index].highlights ();}
 						break;
 						default:
+							//tratamento de gameover, personagem nao anda mais, e chama a janela de gameover
+							walk = false;
+							index = 0;
+							gameOverWindow.mostrarPopupGameOver = true;
 						break;
 					}
 				break;
@@ -89,12 +105,15 @@ public class puppet_by_jandson : MonoBehaviour {
 					switch (ordem_final[index].getAcao())
 					{
 					case "Escada":
+						//tratamento para colisao com escada, tile de escada
+						//tira o efeito de rigidbody, movimentacao do personagem, e o arremessa no chao do prefab
 						walk = false;
 						stair = true;
 						rigidbody2D.isKinematic = true;
 						transform.position = new Vector2 (transform.position.x, transform.position.y + 0.09f);
 						break;
 						default:
+						//aqui da para tratar como quiser, eu escolhi que quando nao for subir, apenas faz nada
 						break;
 					}
 				break;
@@ -103,6 +122,8 @@ public class puppet_by_jandson : MonoBehaviour {
 
 		void OnCollisionExit2D(Collision2D col)
 		{
+			//personagem arremessado pelo tratamento da escada, volta a ter atributos anteriores
+			//esse metodo esta assim para caso haja mais tratamentos aqui
 			if (col.gameObject.name == "escada")
 			{
 				rigidbody2D.isKinematic = false;

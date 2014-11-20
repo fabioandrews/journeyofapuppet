@@ -36,12 +36,14 @@ namespace AssemblyCSharp
 			}
 			else
 			{
+				Debug.Log("reload do estagio");
 				//eh o caso de quando da reload no estagio(personagem morre uma vez e o jogador quer reiniciar a fase)
 				ordem = new Tile_by_jandson[9];
 				for (int i = 1; i <= 9; i++)
 				{
 					ordem [i-1] = (Tile_by_jandson)GameObject.Find ("tile" + i).GetComponent<Tile_by_jandson> ();
 				}// inicia referencia as tiles criadas
+
 
 				cenario = (Background_by_jandson)GameObject.Find ("background").GetComponent<Background_by_jandson> ();
 				cenario.setAcoes(acoesDosTilesEmOrdem);
@@ -126,6 +128,7 @@ namespace AssemblyCSharp
 				{
 					acoesDosTilesEmOrdem[j] = ordem[j].getAcao();
 				}
+				Debug.Log("acoes estao em ordem agora");
 				
 				DontDestroyOnLoad(this);
 			}

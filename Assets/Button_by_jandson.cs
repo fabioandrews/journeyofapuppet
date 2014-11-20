@@ -5,6 +5,7 @@ namespace AssemblyCSharp
 	public class Button_by_jandson : MonoBehaviour {
 		private Tile_by_jandson[] ordem; // vetor de referencias as tiles criadas
 		private puppet_by_jandson puppet;
+		public Puzzle_by_jandson puzzle;//NOVO ATRIBUTO PRO BOTAO
 
 		// Use this for initialization
 		void Start () {
@@ -26,6 +27,7 @@ namespace AssemblyCSharp
 		//quando pressionado o botao go, destroi todas as possibilidades de cliques
 		private void OnMouseDown()
 		{
+			puzzle.pegarPosicoesAntesRestast();
 			for (int i = 0; i < ordem.Length; i++) {Destroy(ordem[i].collider2D);}
 			Destroy (this.collider2D);
 			puppet.setWalk ();

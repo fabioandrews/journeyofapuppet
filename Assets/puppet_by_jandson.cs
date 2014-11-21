@@ -42,6 +42,8 @@ public class puppet_by_jandson : MonoBehaviour {
 						case "Pular":
 							//tratamento para colisao com lobo, tile de pulo
 							rigidbody2D.AddForce(new Vector2(0.0f,320.0f));
+							col.collider.isTrigger = true;
+							col.rigidbody.isKinematic = true;
 							//chama metodo de troca de highlight para a tile atual, e a prox, caso haja
 							if (index < ordem_final.Length){ordem_final[index].highlights ();}
 							index++;
@@ -88,6 +90,8 @@ public class puppet_by_jandson : MonoBehaviour {
 						case "Pular":
 							//tratamento para colisao com buraco, tile de pulo
 							rigidbody2D.AddForce(new Vector2(0.0f,630.0f));
+							col.collider.isTrigger = true;
+							col.rigidbody.isKinematic = true;
 							//chama metodo de troca de highlight para a tile atual, e a prox, caso haja
 							if (index < ordem_final.Length){ordem_final[index].highlights ();}
 							index++;

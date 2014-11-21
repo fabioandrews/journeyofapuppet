@@ -38,7 +38,7 @@ public class puppet_by_jandson : MonoBehaviour {
 
 		//nas colisoes, verifica o inimigo que causou a colisao,
 		//se realizada a acao certa, tratar, senao, walk = false e chamar a janela de game over
-		void OnCollisionEnter2D (Collision2D col)
+		IEnumerator OnCollisionEnter2D (Collision2D col)
 		{
 			switch (col.gameObject.name)
 			{
@@ -52,23 +52,33 @@ public class puppet_by_jandson : MonoBehaviour {
 							col.collider.isTrigger = true;
 							col.rigidbody.isKinematic = true;
 							//chama metodo de troca de highlight para a tile atual, e a prox, caso haja
-							if (indice_vetor < ordem_final.Length){ordem_final[indice_vetor].highlights ();}
+							ordem_final[indice_vetor].highlights ();
 							indice_vetor++;
 							if (indice_vetor < ordem_final.Length){ordem_final[indice_vetor].highlights ();}
 						break;
 						case "Atacar":
 							//tratamento para colisao com lobo, tile de ataque
+							//aqui da para deixar objeto kinematic e trigger, sem perder as propriedades
+							col.collider.isTrigger = true;
+							col.rigidbody.isKinematic = true;
+							//delay para realizar a açao apenas quando se aproximar o suficiente
+							yield return new WaitForSeconds(0.4F);
 							GameObject.Destroy(col.gameObject);
 							//chama metodo de troca de highlight para a tile atual, e a prox, caso haja
-							if (indice_vetor < ordem_final.Length){ordem_final[indice_vetor].highlights ();}
+							ordem_final[indice_vetor].highlights ();
 							indice_vetor++;
 							if (indice_vetor < ordem_final.Length){ordem_final[indice_vetor].highlights ();}
 						break;
 						default:
 							//tratamento de gameover, personagem nao anda mais, e chama a janela de gameover
+							//aqui da para deixar objeto kinematic e trigger, sem perder as propriedades
 							col.collider.isTrigger = true;
 							col.rigidbody.isKinematic = true;
-							StartCoroutine("mortePorLobo");
+							//delay para realizar a açao apenas quando se aproximar o suficiente
+							yield return new WaitForSeconds(0.4F);
+							andando = false;
+							indice_vetor = 0;
+							janela_gui.mostrarPopupGameOver = true;
 						break;
 					}
 				break;
@@ -79,7 +89,7 @@ public class puppet_by_jandson : MonoBehaviour {
 							//tratamento para colisao com urso, tile de ataque
 							GameObject.Destroy(col.gameObject);
 							//chama metodo de troca de highlight para a tile atual, e a prox, caso haja
-							if (indice_vetor < ordem_final.Length){ordem_final[indice_vetor].highlights ();}
+							ordem_final[indice_vetor].highlights ();
 							indice_vetor++;
 							if (indice_vetor < ordem_final.Length){ordem_final[indice_vetor].highlights ();}
 						break;
@@ -96,11 +106,12 @@ public class puppet_by_jandson : MonoBehaviour {
 					{
 						case "Pular":
 							//tratamento para colisao com buraco, tile de pulo
+							//aqui da para deixar objeto kinematic e trigger, sem perder as propriedades
 							rigidbody2D.AddForce(new Vector2(0.0f,320.0f));
 							col.collider.isTrigger = true;
 							col.rigidbody.isKinematic = true;
 							//chama metodo de troca de highlight para a tile atual, e a prox, caso haja
-							if (indice_vetor < ordem_final.Length){ordem_final[indice_vetor].highlights ();}
+							ordem_final[indice_vetor].highlights ();
 							indice_vetor++;
 							if (indice_vetor < ordem_final.Length){ordem_final[indice_vetor].highlights ();}
 						break;
@@ -108,7 +119,16 @@ public class puppet_by_jandson : MonoBehaviour {
 							//tratamento de gameover, personagem nao anda mais, e chama a janela de gameover
 							col.collider.isTrigger = true;
 							col.rigidbody.isKinematic = true;
-							StartCoroutine("mortePorBuraco");
+							//delay para realizar a açao apenas quando se aproximar o suficiente
+							yield return new WaitForSeconds(0.6F);
+							//camera volta a nao ter pai
+							cameraPrincipal.gameObject.transform.parent = null;
+							//andando = false para ele nao continuar indo para a direita
+							//destruir box colider para ele poder cair
+							Destroy (this.collider2D);
+							andando = false;
+							indice_vetor = 0;
+							janela_gui.mostrarPopupGameOver = true;
 						break;
 					}
 				break;
@@ -136,26 +156,6 @@ public class puppet_by_jandson : MonoBehaviour {
 			}
 		}
 
-		//tratamento caso morte por lobo
-		private IEnumerator mortePorLobo()
-		{
-			yield return new WaitForSeconds(0.4F);
-			andando = false;
-			indice_vetor = 0;
-			janela_gui.mostrarPopupGameOver = true;
-		}
-
-		//tratamento caso morte por buraco
-		private IEnumerator mortePorBuraco()
-		{
-			yield return new WaitForSeconds(0.6F);
-			cameraPrincipal.gameObject.transform.parent = null;
-			Destroy (this.collider2D);
-			andando = false;
-			indice_vetor = 0;
-			janela_gui.mostrarPopupGameOver = true;
-		}
-
 		void OnCollisionExit2D(Collision2D col)
 		{
 			//personagem arremessado pelo tratamento da escada, volta a ter atributos anteriores
@@ -165,7 +165,7 @@ public class puppet_by_jandson : MonoBehaviour {
 				rigidbody2D.isKinematic = false;
 				andando = true;
 				subindo_escada = false;
-				if (indice_vetor < ordem_final.Length){ordem_final[indice_vetor].highlights ();}
+				ordem_final[indice_vetor].highlights ();
 				indice_vetor++;
 				if (indice_vetor < ordem_final.Length){ordem_final[indice_vetor].highlights ();}
 			}

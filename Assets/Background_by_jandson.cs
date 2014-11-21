@@ -35,7 +35,7 @@ public class Background_by_jandson : MonoBehaviour {
 			//Debug.Log("nomedaCenaAtual=" + nomeDaCenaAtual);
 			if(nomeDaCenaAtual == "Game_scene1_1")
 			{
-				acoes = new string[9] {"Escada", "Pular", "Pular", "Pular", "", "Pular", "Pular", "Pular","Pular"};
+				acoes = new string[9] {"Pular", "Pular", "Pular", "Pular", "", "Pular", "Pular", "Pular","Pular"};
 			}
 			else if(nomeDaCenaAtual == "Game_scene1_2")
 			{

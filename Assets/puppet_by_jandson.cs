@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using System;
 namespace AssemblyCSharp
 
@@ -9,6 +11,7 @@ public class puppet_by_jandson : MonoBehaviour {
 		private bool stair; //indica se esta subindo escada
 		private int index;
 		private PopupWindowGameOver gameOverWindow; //referenciado agora internamente ao popupgameover
+		private float seconds = 20;
 
 		// Use this for initialization
 		void Start () {
@@ -59,9 +62,9 @@ public class puppet_by_jandson : MonoBehaviour {
 						break;
 						default:
 							//tratamento de gameover, personagem nao anda mais, e chama a janela de gameover
-							walk = false;
-							index = 0;
-							gameOverWindow.mostrarPopupGameOver = true;
+							col.collider.isTrigger = true;
+							col.rigidbody.isKinematic = true;
+							StartCoroutine("apenasFazerDelay");
 						break;
 					}
 				break;
@@ -99,9 +102,9 @@ public class puppet_by_jandson : MonoBehaviour {
 						break;
 						default:
 							//tratamento de gameover, personagem nao anda mais, e chama a janela de gameover
-							walk = false;
-							index = 0;
-							gameOverWindow.mostrarPopupGameOver = true;
+							col.collider.isTrigger = true;
+							col.rigidbody.isKinematic = true;
+
 						break;
 					}
 				break;
@@ -122,6 +125,14 @@ public class puppet_by_jandson : MonoBehaviour {
 					}
 				break;
 			}
+		}
+
+		private IEnumerator apenasFazerDelay()
+		{
+			yield return new WaitForSeconds(0.4F);
+			walk = false;
+			index = 0;
+			gameOverWindow.mostrarPopupGameOver = true;
 		}
 
 		void OnCollisionExit2D(Collision2D col)

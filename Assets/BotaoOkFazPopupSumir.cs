@@ -11,6 +11,51 @@ public class BotaoOkFazPopupSumir : MonoBehaviour {
 		//por um tempo e soh quando a popup window desaparecer(ou seja, quando for clicado no botao OK), faremos o texto do balao reaparecer
 		GUIText texto_do_balao = (GUIText)GameObject.Find ("texto_do_balao").GetComponent<GUIText> ();
 		texto_do_balao.enabled = false;
+
+		string nomeDaCenaAtual = Application.loadedLevelName;
+		if(nomeDaCenaAtual.CompareTo("Game_scene_1_1") == 0 || nomeDaCenaAtual.CompareTo("cenaPraTestarPopupMoverBlocos") == 0)
+		{
+			//eh a primeira fase? se sim, tem de explicar como se joga. Entao precisamos ocultar textos seguintes do popup para que eles nao se sobreponham
+			GameObject textoAsAcoesQueOBonecoPodeExecutarNaFase = GameObject.Find ("textoAsAcoesQueOBonecoPodeExecutarNaFase");
+			if (textoAsAcoesQueOBonecoPodeExecutarNaFase != null) 
+			{
+				GUIText textoFazerSumir = textoAsAcoesQueOBonecoPodeExecutarNaFase.GetComponent<GUIText>();
+				textoFazerSumir.enabled= false;
+			}
+			GameObject textoExplicaTilePularAlto = GameObject.Find ("textoExplicaTilePularAlto");
+			if (textoExplicaTilePularAlto != null) 
+			{
+				GUIText textoFazerSumir = textoExplicaTilePularAlto.GetComponent<GUIText>();
+				textoFazerSumir.enabled= false;
+			}
+			GameObject textoExplicaTileVazio = GameObject.Find ("textoExplicaTileVazio");
+			if (textoExplicaTileVazio != null) 
+			{
+				GUIText textoFazerSumir = textoExplicaTileVazio.GetComponent<GUIText>();
+				textoFazerSumir.enabled= false;
+			}
+
+			//fazer desaparecer textos sobre as explicacoes das acoes...
+			GameObject textoTituloExplicaExecucaoDasAcoes = GameObject.Find ("tituloPopupExplicaExecucaoDasAcoes");
+			if (textoTituloExplicaExecucaoDasAcoes != null) 
+			{
+				GUIText textoFazerSumir = textoTituloExplicaExecucaoDasAcoes.GetComponent<GUIText>();
+					textoFazerSumir.enabled= false;
+			}
+			
+			GameObject textoExplicaOrdemExecucaoDasAcoes = GameObject.Find ("explicacaoExecucaoDasAcoes");
+			if (textoExplicaOrdemExecucaoDasAcoes != null) 
+			{
+				GUIText textoFazerSumir = textoExplicaOrdemExecucaoDasAcoes.GetComponent<GUIText>();
+				textoFazerSumir.enabled= false;
+			}
+
+
+
+
+
+
+		}
 	}
 	
 	// Update is called once per frame
@@ -23,6 +68,7 @@ public class BotaoOkFazPopupSumir : MonoBehaviour {
 	{
 		if (this.name == "botaoOkPopExplicaAcoesDoBonecoNaFase") 
 		{
+			Debug.Log("clicou no botao que explica as açoes do boneco");
 			//eh o botao OK para fazer o popup que mostra as acoes do boneco sumir!
 			//vamos achar todos os objetos que fazem parte do popup que explica as acoes(se ele existir na cena) e faze-los ir para um local que o usuario nao pode ver
 			GameObject gameObjectPopupExplicaAcoesDoBoneco = GameObject.Find ("popupExplicaAsAcoesDoBonecoNaFase");
@@ -61,6 +107,110 @@ public class BotaoOkFazPopupSumir : MonoBehaviour {
 			GUIText texto_do_balao = (GUIText)GameObject.Find ("texto_do_balao").GetComponent<GUIText> ();
 			texto_do_balao.enabled = true;
 		}
+		if (this.name == "botaoOkPopExplicaMovimentoBlocos") 
+		{
+			Debug.Log("clicou no botao que explica movimento dos blocos");
+			//eh o botao OK para fazer o popup que mostra as acoes do boneco sumir!
+			//vamos achar todos os objetos que fazem parte do popup que explica as acoes(se ele existir na cena) e faze-los ir para um local que o usuario nao pode ver
+			GameObject gameObjectPopupExplicaAcoesDoBoneco = GameObject.Find ("popupExplicaMovimentoDosBlocos");
+			if (gameObjectPopupExplicaAcoesDoBoneco != null)  
+			{
+				gameObjectPopupExplicaAcoesDoBoneco.transform.position = new Vector3( 999.23f , 999.7f , 0.0f);
+			}
+			
+			//nao eh so o popup que vai ser movido. Lembre-se que os GuiText nao podem ser filhos de ninguem! Por isso, devemos tira-los da cena separadamente(se existirem)
+			GameObject textoTituloExplicaMovimentoBlocos = GameObject.Find ("tituloPopupExplicaMovimentoBlocos");
+			if (textoTituloExplicaMovimentoBlocos != null) 
+			{
+				textoTituloExplicaMovimentoBlocos.transform.position = new Vector3( 999.2f , 999.7f , 0.0f);
+			}
+			
+			GameObject textoExplicaMovimentoBlocos = GameObject.Find ("explicacaoMovimentoDosBlocos");
+			if (textoExplicaMovimentoBlocos != null) 
+			{
+				textoExplicaMovimentoBlocos.transform.position = new Vector3(999.2f , 999.7f , 0.0f);
+			}
+			GameObject videoExplicaMovimentoBlocos = GameObject.Find ("videoexplicacaoMoveBloco");
+			if (videoExplicaMovimentoBlocos != null) 
+			{
+				videoExplicaMovimentoBlocos.transform.position = new Vector3(999.2f , 999.7f , 0.0f);
+			}
+
+			//fazer reaparecer as explicacoes do popup seguinte...
+			//nao eh so o popup que vai ser movido. Lembre-se que os GuiText nao podem ser filhos de ninguem! Por isso, devemos tira-los da cena separadamente(se existirem)
+			GameObject textoTituloExplicaExecucaoDasAcoes = GameObject.Find ("tituloPopupExplicaExecucaoDasAcoes");
+			if (textoTituloExplicaExecucaoDasAcoes != null) 
+			{
+				GUIText textoFazerSumir = textoTituloExplicaExecucaoDasAcoes.GetComponent<GUIText>();
+				textoFazerSumir.enabled= true;
+			}
+			
+			GameObject textoExplicaOrdemExecucaoDasAcoes = GameObject.Find ("explicacaoExecucaoDasAcoes");
+			if (textoExplicaOrdemExecucaoDasAcoes != null) 
+			{
+				GUIText textoFazerSumir = textoExplicaOrdemExecucaoDasAcoes.GetComponent<GUIText>();
+				textoFazerSumir.enabled= true;
+			}
+
+			
+			
+			this.transform.position = new Vector3(999.2f , 999.7f , 0.0f);
+
+		}
+		if (this.name == "botaoOkPopExplicaExecucaoDasAcoes") 
+		{
+			Debug.Log("clicou no botao que explica a ordem de execucao das acoes");
+			//eh o botao OK para fazer o popup que mostra as acoes do boneco sumir!
+			//vamos achar todos os objetos que fazem parte do popup que explica as acoes(se ele existir na cena) e faze-los ir para um local que o usuario nao pode ver
+			GameObject gameObjectPopupExplicaExecucaoDasAcoes = GameObject.Find ("popupExplicaExecucaoDasAcoes");
+			if (gameObjectPopupExplicaExecucaoDasAcoes != null)  
+			{
+				gameObjectPopupExplicaExecucaoDasAcoes.transform.position = new Vector3( 999.23f , 999.7f , 0.0f);
+			}
+			
+			//nao eh so o popup que vai ser movido. Lembre-se que os GuiText nao podem ser filhos de ninguem! Por isso, devemos tira-los da cena separadamente(se existirem)
+			GameObject textoTituloExplicaExecucaoDasAcoes = GameObject.Find ("tituloPopupExplicaExecucaoDasAcoes");
+			if (textoTituloExplicaExecucaoDasAcoes != null) 
+			{
+				textoTituloExplicaExecucaoDasAcoes.transform.position = new Vector3( 999.2f , 999.7f , 0.0f);
+			}
+			
+			GameObject textoExplicaOrdemExecucaoDasAcoes = GameObject.Find ("explicacaoExecucaoDasAcoes");
+			if (textoExplicaOrdemExecucaoDasAcoes != null) 
+			{
+				textoExplicaOrdemExecucaoDasAcoes.transform.position = new Vector3(999.2f , 999.7f , 0.0f);
+			}
+			GameObject videoExplicaExecucaoAcoesDoBoneco = GameObject.Find ("videoexplicacaoAcoesSequencia");
+			if (videoExplicaExecucaoAcoesDoBoneco != null) 
+			{
+				videoExplicaExecucaoAcoesDoBoneco.transform.position = new Vector3(999.2f , 999.7f , 0.0f);
+			}
+
+			//fazer reaparecer as explicacoes do popup seguinte...
+			GameObject textoAsAcoesQueOBonecoPodeExecutarNaFase = GameObject.Find ("textoAsAcoesQueOBonecoPodeExecutarNaFase");
+			if (textoAsAcoesQueOBonecoPodeExecutarNaFase != null) 
+			{
+				GUIText textoFazerSumir = textoAsAcoesQueOBonecoPodeExecutarNaFase.GetComponent<GUIText>();
+				textoFazerSumir.enabled= true;
+			}
+			GameObject textoExplicaTilePularAlto = GameObject.Find ("textoExplicaTilePularAlto");
+			if (textoExplicaTilePularAlto != null) 
+			{
+				GUIText textoFazerSumir = textoExplicaTilePularAlto.GetComponent<GUIText>();
+				textoFazerSumir.enabled= true;
+			}
+			GameObject textoExplicaTileVazio = GameObject.Find ("textoExplicaTileVazio");
+			if (textoExplicaTileVazio != null) 
+			{
+				GUIText textoFazerSumir = textoExplicaTileVazio.GetComponent<GUIText>();
+				textoFazerSumir.enabled= true;
+			}
+			
+			
+			this.transform.position = new Vector3(999.2f , 999.7f , 0.0f);
+			
+		}
+
 
 
 

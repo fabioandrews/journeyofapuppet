@@ -9,10 +9,12 @@ GameObject:
   m_Component:
   - 4: {fileID: 400000}
   - 212: {fileID: 21200000}
-  - 95: {fileID: 9500000}
+  - 50: {fileID: 5000000}
   - 114: {fileID: 11400000}
+  - 82: {fileID: 8200000}
+  - 61: {fileID: 6100000}
   m_Layer: 0
-  m_Name: balao_grito
+  m_Name: Puppet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,12 +29,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 400002}
   - 212: {fileID: 21200002}
-  - 50: {fileID: 5000000}
+  - 95: {fileID: 9500000}
   - 114: {fileID: 11400002}
-  - 82: {fileID: 8200000}
-  - 61: {fileID: 6100000}
   m_Layer: 0
-  m_Name: ghostSheet_0 1
+  m_Name: balao_grito
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,10 +45,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .0388131104, y: 2.02757812, z: 0}
+  m_LocalPosition: {x: -2.15939713, y: 1.00219274, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 400002}
+  m_Children:
+  - {fileID: 400002}
+  m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &400002
 Transform:
@@ -57,18 +58,17 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.0658474, y: .773102105, z: 0}
+  m_LocalPosition: {x: .0388131104, y: 2.02757812, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 400000}
-  m_Father: {fileID: 0}
+  m_Children: []
+  m_Father: {fileID: 400000}
   m_RootOrder: 0
 --- !u!50 &5000000
 Rigidbody2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
+  m_GameObject: {fileID: 100000}
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0
@@ -83,7 +83,7 @@ BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
+  m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -94,7 +94,7 @@ AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
+  m_GameObject: {fileID: 100000}
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 0}
@@ -153,7 +153,7 @@ Animator:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
+  m_GameObject: {fileID: 100002}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 3fae76a459c28fa4fbc7976c9b110bd1, type: 2}
@@ -170,20 +170,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e8cf119f1858a0449d946eb84ca0ca9, type: 3}
+  m_Script: {fileID: 11500000, guid: daa983665cd3e3a40a84166b04c89d94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  segBalaoAparecer: 10
-  segBalaoDesaparecer: 5
-  spriteDesaparecer: {fileID: 21200000}
-  textoDoBalao: {fileID: 0}
-  personagemEmMomentoDeAcao: 0
-  target: {fileID: 400000}
-  offset: {x: 0, y: 1, z: 0}
-  clampToScreen: 0
-  clampBorderSize: .0500000007
-  useMainCamera: 1
-  cameraToUse: {fileID: 0}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -192,24 +181,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 100002}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbbf6107890642f42bdfbce29764286a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e8cf119f1858a0449d946eb84ca0ca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spritePersonagemComum: {fileID: 21300000, guid: 0b50160b4c213934ca0510a65796b2f5,
-    type: 3}
-  spritePersonagemMorreu: {fileID: 21300000, guid: 986b3c3a6cb97ea42850b79903e021ce,
-    type: 3}
-  spritePersonagemAtacou: {fileID: 21300000, guid: 3c83e962f17f6574999046d4595a7f81,
-    type: 3}
-  displacement: {x: .0199999996, y: 0, z: 0}
-  bateuEmAlgo: 0
-  deveAndar: 0
-  puzzle: {fileID: 0}
-  balaoDeFala: {fileID: 11400000}
-  popupGameOver: {fileID: 0}
-  sfxBatida: {fileID: 8300000, guid: d4e1b316b872b4b47b8ea1f7ef4973c0, type: 3}
-  musicaVitoria: {fileID: 8300000, guid: 1b810bb536c90b14fafb5eb98a8ba0c0, type: 3}
-  botaoFazPersonagemAndar: {fileID: 0}
+  segBalaoAparecer: 10
+  segBalaoDesaparecer: 5
+  spriteDesaparecer: {fileID: 21200002}
+  textoDoBalao: {fileID: 0}
+  personagemEmMomentoDeAcao: 0
+  target: {fileID: 400002}
+  offset: {x: 0, y: 1, z: 0}
+  clampToScreen: 0
+  clampBorderSize: .0500000007
+  useMainCamera: 1
+  cameraToUse: {fileID: 0}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -230,7 +215,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300002, guid: 8f92c953e2c324e4e99bfa029dd9b6a9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0b50160b4c213934ca0510a65796b2f5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &21200002
 SpriteRenderer:
@@ -252,7 +237,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0b50160b4c213934ca0510a65796b2f5, type: 3}
+  m_Sprite: {fileID: 21300002, guid: 8f92c953e2c324e4e99bfa029dd9b6a9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
@@ -263,6 +248,6 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 100002}
+  m_RootGameObject: {fileID: 100000}
   m_IsPrefabParent: 1
   m_IsExploded: 1

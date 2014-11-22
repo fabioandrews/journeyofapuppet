@@ -40,6 +40,7 @@ public class puppet_by_jandson : MonoBehaviour {
 		//se realizada a acao certa, tratar, senao, walk = false e chamar a janela de game over
 		IEnumerator OnCollisionEnter2D (Collision2D col)
 		{
+			Debug.Log (col.gameObject.name);
 			switch (col.gameObject.name)
 			{
 				case "Lobo":
@@ -140,12 +141,23 @@ public class puppet_by_jandson : MonoBehaviour {
 						//tira o efeito de rigidbody, movimentacao do personagem, e o arremessa no chao do prefab
 						andando = false;
 						subindo_escada = true;
-						rigidbody2D.isKinematic = true;
-						transform.position = new Vector2 (transform.position.x, transform.position.y + 0.09f);
-						break;
+						this.rigidbody2D.isKinematic = true;
+						yield return new WaitForSeconds(0.6F);
+						andando = true;
+						subindo_escada = false;
+						yield return new WaitForSeconds(3.2F);
+						rigidbody2D.isKinematic = false;
+						ordem_final[indice_vetor].highlights ();
+						indice_vetor++;
+						if (indice_vetor < ordem_final.Length){ordem_final[indice_vetor].highlights ();}
+					//transform.position = new Vector2 (transform.position.x, transform.position.y + 0.09f);
+					break;
 						default:
 						//aqui da para tratar como quiser, eu escolhi que quando nao for subir, apenas faz nada
-						break;
+						col.collider.isTrigger = true;
+						col.rigidbody.isKinematic = true;
+						col.collider.isTrigger = true;
+					break;
 					}
 				break;
 				case "finish":
@@ -153,21 +165,6 @@ public class puppet_by_jandson : MonoBehaviour {
 					janela_gui.mostrarCenaDeFinalDeFase = true;
 					janela_gui.mostrarPopupGameOver = true;
 				break;
-			}
-		}
-
-		void OnCollisionExit2D(Collision2D col)
-		{
-			//personagem arremessado pelo tratamento da escada, volta a ter atributos anteriores
-			//esse metodo esta assim para caso haja mais tratamentos aqui
-			if (col.gameObject.name == "escada")
-			{
-				rigidbody2D.isKinematic = false;
-				andando = true;
-				subindo_escada = false;
-				ordem_final[indice_vetor].highlights ();
-				indice_vetor++;
-				if (indice_vetor < ordem_final.Length){ordem_final[indice_vetor].highlights ();}
 			}
 		}
 

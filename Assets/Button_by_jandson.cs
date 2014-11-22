@@ -35,6 +35,7 @@ namespace AssemblyCSharp
 			for (int i = 0; i < ordem.Length; i++) {Destroy(ordem[i].collider2D);}
 			Destroy (this.collider2D);
 			puppet.setWalk ();
+			cameraPrincipal.fazerCameraNaoPoderSerMaisControladaPeloUsuario ();
 			cameraPrincipal.gameObject.transform.parent = puppet.gameObject.transform; 
 		}
 	}

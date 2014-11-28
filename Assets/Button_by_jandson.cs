@@ -36,7 +36,7 @@ namespace AssemblyCSharp
 			Destroy (this.collider2D);
 			puppet.setWalk ();
 			cameraPrincipal.fazerCameraNaoPoderSerMaisControladaPeloUsuario ();
-			cameraPrincipal.gameObject.transform.parent = puppet.gameObject.transform; 
+			cameraPrincipal.fazerCameraSeguirPersonagemApenasHorizontalmente ();//vamos fazer a camera segui o boneco
 		}
 	}
 }

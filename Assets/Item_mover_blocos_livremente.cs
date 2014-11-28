@@ -84,8 +84,6 @@ public class Item_mover_blocos_livremente : MonoBehaviour {
 			itemEstahAtivo = true;
 			possuiItem = false;//perdeu item
 			this.mudarIconeDoItem();
-			TextoExplicaControleAtual explicacaoControleAtual = GameObject.Find("TextoExplicaControleAtual").GetComponent<TextoExplicaControleAtual>();
-			explicacaoControleAtual.alternarTextoExplicacaoControles();
 			
 		}
 		

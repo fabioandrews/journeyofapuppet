@@ -51,7 +51,7 @@ public class Timer : MonoBehaviour
 
 				timer.text = horas.ToString () + ":" + minutosEmString + ":" + segundosEmString;
 			int segundosTotais = minutos * 60;
-			if((segundosTotais + segundos) % 90 == 0 && jogadorJahRecebeuOItemNaJogatina == false)
+			/*if((segundosTotais + segundos) % 90 == 0 && jogadorJahRecebeuOItemNaJogatina == false)
 			{
 				//eh para dar o item ao usuario. Para isso, Timer deve conhecer a classe do item que phillip estah criando
 				Toast toastAvisaJogadorGanhouItem = (Toast) GameObject.Find("Toast").GetComponent<Toast>();
@@ -60,7 +60,7 @@ public class Timer : MonoBehaviour
 				toastAvisaJogadorGanhouItem.setMostrarToast(true);
 				itemQueMoveOsBlocos.fazerJogadorGanharItem();
 				this.jogadorJahRecebeuOItemNaJogatina = true;//nao pode receber mais o item
-			}
+			}*/
 		}
 	}
 	

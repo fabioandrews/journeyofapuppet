@@ -13,7 +13,7 @@ public class BotaoOkFazPopupSumir : MonoBehaviour {
 		texto_do_balao.enabled = false;
 
 		string nomeDaCenaAtual = Application.loadedLevelName;
-		if(nomeDaCenaAtual.CompareTo("Game_scene_1_1") == 0 || nomeDaCenaAtual.CompareTo("cenaPraTestarPopupMoverBlocos") == 0)
+		if(nomeDaCenaAtual.CompareTo("Game_scene1_1") == 0 || nomeDaCenaAtual.CompareTo("cenaPraTestarPopupMoverBlocos") == 0)
 		{
 			//eh a primeira fase? se sim, tem de explicar como se joga. Entao precisamos ocultar textos seguintes do popup para que eles nao se sobreponham
 			GameObject textoAsAcoesQueOBonecoPodeExecutarNaFase = GameObject.Find ("textoAsAcoesQueOBonecoPodeExecutarNaFase");

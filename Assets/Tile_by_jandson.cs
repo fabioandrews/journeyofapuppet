@@ -56,6 +56,21 @@ namespace AssemblyCSharp
 					spriteRenderer.sprite = sprites [0];
 				}
 			}
+			else
+			{ 
+				if (highlight == false)
+				{
+					highlight = true;
+					sprites = Resources.LoadAll<Sprite> ("tile" + "Nada" + "Highlight");
+					spriteRenderer.sprite = sprites [0];
+				}
+				else
+				{
+					highlight = false;
+					sprites = Resources.LoadAll<Sprite> ("tile" + "Nada");
+					spriteRenderer.sprite = sprites [0];
+				}
+			}
 		}
 
 		//chama metodo de troca do grid

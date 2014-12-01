@@ -376,6 +376,10 @@ Prefab:
       propertyPath: textoDoBalao
       value: 
       objectReference: {fileID: 2043048327}
+    - target: {fileID: 11400000, guid: 02f039e46969be04b96821dc5606055c, type: 2}
+      propertyPath: musicaVitoria
+      value: 
+      objectReference: {fileID: 8300000, guid: 1b810bb536c90b14fafb5eb98a8ba0c0, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 02f039e46969be04b96821dc5606055c, type: 2}
   m_RootGameObject: {fileID: 1193347019}
@@ -2449,6 +2453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daa983665cd3e3a40a84166b04c89d94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicaVitoria: {fileID: 8300000, guid: 1b810bb536c90b14fafb5eb98a8ba0c0, type: 3}
 --- !u!50 &1193347023
 Rigidbody2D:
   m_ObjectHideFlags: 0

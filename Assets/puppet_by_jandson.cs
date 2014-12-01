@@ -13,6 +13,7 @@ public class puppet_by_jandson : MonoBehaviour {
 		private int indice_vetor;
 		private PopupWindowGameOver janela_gui; //referenciado agora internamente ao popupgameover
 		private CameraVisaoDoEstagio cameraPrincipal;
+		public AudioClip musicaVitoria; //musiquinha de vitoria
 
 		// Use this for initialization
 		void Start () {
@@ -164,6 +165,11 @@ public class puppet_by_jandson : MonoBehaviour {
 					andando = false;
 					janela_gui.mostrarCenaDeFinalDeFase = true;
 					janela_gui.mostrarPopupGameOver = true;
+					Button_by_jandson botaoFazPersonagemAndar = GameObject.Find ("botao1").GetComponent<Button_by_jandson> ();
+					
+					botaoFazPersonagemAndar.audio.clip = musicaVitoria;
+					botaoFazPersonagemAndar.audio.loop = true;
+					botaoFazPersonagemAndar.audio.Play (0);
 				break;
 			}
 		}

@@ -148,6 +148,8 @@ public class puppet_by_jandson : MonoBehaviour {
 							col.rigidbody.isKinematic = true;
 							//delay para realizar a açao apenas quando se aproximar o suficiente
 							yield return new WaitForSeconds(0.6F);
+							AudioClip sfxBatida = Resources.Load("comedy_music_run_fall_and_crash", typeof(AudioClip)) as AudioClip;
+							audio.PlayOneShot(sfxBatida);
 							//camera volta a nao ter pai
 							cameraPrincipal.gameObject.transform.parent = null;
 							//andando = false para ele nao continuar indo para a direita

@@ -13,10 +13,17 @@ public class puppet_by_jandson : MonoBehaviour {
 		private int indice_vetor;
 		private PopupWindowGameOver janela_gui; //referenciado agora internamente ao popupgameover
 		private CameraVisaoDoEstagio cameraPrincipal;
-		public AudioClip musicaVitoria; //musiquinha de vitoria
+		private SpriteRenderer spriteRenderer; //cara que muda os sprites do personagem
 
 		// Use this for initialization
 		void Start () {
+			//coisas relacionadas a troca de sprites do personagem
+			spriteRenderer = GetComponent<SpriteRenderer>(); // we are accessing the SpriteRenderer that is attached to the Gameobject
+			if (spriteRenderer.sprite == null) 
+			{
+				Sprite spritePersonagemComum = Resources.Load("bonecoPequeno", typeof(Sprite)) as Sprite;
+				spriteRenderer.sprite = spritePersonagemComum; // set the sprite to sprite1
+			}
 		}
 
 		void Awake()
@@ -65,6 +72,11 @@ public class puppet_by_jandson : MonoBehaviour {
 							col.rigidbody.isKinematic = true;
 							//delay para realizar a açao apenas quando se aproximar o suficiente
 							yield return new WaitForSeconds(0.4F);
+							this.andando = false;//personagem fica parado pra atacar o inimigo
+							//vamos acabar com esse monstro!
+							Sprite spritePersonagemAtacou = Resources.Load("bonecoPequenoAtacando", typeof(Sprite)) as Sprite;
+							spriteRenderer.sprite = spritePersonagemAtacou;
+							StartCoroutine("fazerAnimacaoPersonagemMataInimigo");
 							GameObject.Destroy(col.gameObject);
 							//chama metodo de troca de highlight para a tile atual, e a prox, caso haja
 							ordem_final[indice_vetor].highlights ();
@@ -79,6 +91,10 @@ public class puppet_by_jandson : MonoBehaviour {
 							//delay para realizar a açao apenas quando se aproximar o suficiente
 							yield return new WaitForSeconds(0.4F);
 							andando = false;
+							Sprite spritePersonagemMorreu = Resources.Load("bonecoPequenoMorto", typeof(Sprite)) as Sprite;
+							spriteRenderer.sprite = spritePersonagemMorreu;
+							AudioClip sfxBatida = Resources.Load("comedy_music_run_fall_and_crash", typeof(AudioClip)) as AudioClip;
+							audio.PlayOneShot(sfxBatida);
 							indice_vetor = 0;
 							janela_gui.mostrarPopupGameOver = true;
 						break;
@@ -89,6 +105,11 @@ public class puppet_by_jandson : MonoBehaviour {
 					{
 						case "Atacar":
 							//tratamento para colisao com urso, tile de ataque
+							this.andando = false;//personagem fica parado pra atacar o inimigo
+							//vamos acabar com esse monstro!
+							Sprite spritePersonagemAtacou = Resources.Load("bonecoPequenoAtacando", typeof(Sprite)) as Sprite;
+							spriteRenderer.sprite = spritePersonagemAtacou;
+							StartCoroutine("fazerAnimacaoPersonagemMataInimigo");
 							GameObject.Destroy(col.gameObject);
 							//chama metodo de troca de highlight para a tile atual, e a prox, caso haja
 							ordem_final[indice_vetor].highlights ();
@@ -98,6 +119,10 @@ public class puppet_by_jandson : MonoBehaviour {
 						default:
 							//tratamento de gameover, personagem nao anda mais, e chama a janela de gameover
 							andando = false;
+							Sprite spritePersonagemMorreu = Resources.Load("bonecoPequenoMorto", typeof(Sprite)) as Sprite;
+							spriteRenderer.sprite = spritePersonagemMorreu;
+							AudioClip sfxBatida = Resources.Load("comedy_music_run_fall_and_crash", typeof(AudioClip)) as AudioClip;
+							audio.PlayOneShot(sfxBatida);
 							indice_vetor = 0;
 							janela_gui.mostrarPopupGameOver = true;
 						break;
@@ -166,7 +191,7 @@ public class puppet_by_jandson : MonoBehaviour {
 					janela_gui.mostrarCenaDeFinalDeFase = true;
 					janela_gui.mostrarPopupGameOver = true;
 					Button_by_jandson botaoFazPersonagemAndar = GameObject.Find ("botao1").GetComponent<Button_by_jandson> ();
-					
+					AudioClip musicaVitoria = Resources.Load("a_day_in_the_sun", typeof(AudioClip)) as AudioClip;
 					botaoFazPersonagemAndar.audio.clip = musicaVitoria;
 					botaoFazPersonagemAndar.audio.loop = true;
 					botaoFazPersonagemAndar.audio.Play (0);
@@ -179,6 +204,14 @@ public class puppet_by_jandson : MonoBehaviour {
 		{
 			if (andando) {transform.position = new Vector2 (transform.position.x + 0.06f, transform.position.y);}
 			if (subindo_escada) {transform.position = new Vector2 (transform.position.x, transform.position.y + 0.09f);}
+		}
+
+		public IEnumerator fazerAnimacaoPersonagemMataInimigo()
+		{
+			yield return new WaitForSeconds(0.2F);
+			Sprite spritePersonagemComum = Resources.Load("bonecoPequeno", typeof(Sprite)) as Sprite;
+			spriteRenderer.sprite = spritePersonagemComum;
+			this.andando = true;
 		}
 	}
 }

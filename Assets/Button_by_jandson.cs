@@ -7,10 +7,12 @@ namespace AssemblyCSharp
 		private puppet_by_jandson puppet;
 		private Puzzle_by_jandson puzzle;//NOVO ATRIBUTO PRO BOTAO
 		private CameraVisaoDoEstagio cameraPrincipal;
+		private Boolean botaoFoiClicado;
 
 
 		// Use this for initialization
 		void Start () {
+			botaoFoiClicado = false;
 		}
 		// Update is called once per frame
 		void Update () {
@@ -31,12 +33,16 @@ namespace AssemblyCSharp
 		//quando pressionado o botao go, destroi todas as possibilidades de cliques
 		private void OnMouseDown()
 		{
-			puzzle.pegarPosicoesAntesRestast();
-			for (int i = 0; i < ordem.Length; i++) {Destroy(ordem[i].collider2D);}
-			Destroy (this.collider2D);
-			puppet.setWalk ();
-			cameraPrincipal.fazerCameraNaoPoderSerMaisControladaPeloUsuario ();
-			cameraPrincipal.fazerCameraSeguirPersonagemApenasHorizontalmente ();//vamos fazer a camera segui o boneco
+			if (this.botaoFoiClicado == false) 
+			{
+				this.botaoFoiClicado = true;
+				puzzle.pegarPosicoesAntesRestast();
+				for (int i = 0; i < ordem.Length; i++) {Destroy(ordem[i].collider);}
+				Destroy (this.collider2D);
+				puppet.setWalk ();
+				cameraPrincipal.fazerCameraNaoPoderSerMaisControladaPeloUsuario ();
+				cameraPrincipal.fazerCameraSeguirPersonagemApenasHorizontalmente ();//vamos fazer a camera segui o boneco
+			}
 		}
 	}
 }

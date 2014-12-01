@@ -99,7 +99,11 @@ public class BotaoOkFazPopupSumir : MonoBehaviour {
 			{
 				textoExplicaTileAtacar.transform.position = new Vector3(999.2f , 999.7f , 0.0f);
 			}
-
+			GameObject textoExplicaTileSubirEscada = GameObject.Find("textoExplicaTileEscada");
+			if (textoExplicaTileSubirEscada != null) 
+			{
+				textoExplicaTileSubirEscada.transform.position = new Vector3(999.2f , 999.7f , 0.0f);
+			}
 			
 			this.transform.position = new Vector3(999.2f , 999.7f , 0.0f);
 			

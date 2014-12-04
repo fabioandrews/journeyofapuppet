@@ -88,11 +88,11 @@ public class puppet_by_jandson : MonoBehaviour {
 						default:
 							//tratamento de gameover, personagem nao anda mais, e chama a janela de gameover
 							//aqui da para deixar objeto kinematic e trigger, sem perder as propriedades
-							this.animacao.SetBool ("Walk", false);
 							col.collider.isTrigger = true;
 							col.rigidbody.isKinematic = true;
 							//delay para realizar a açao apenas quando se aproximar o suficiente
 							yield return new WaitForSeconds(0.4F);
+							this.animacao.SetBool ("Walk", false);
 							andando = false;
 							Sprite spritePersonagemMorreu = Resources.Load("bonecoPequenoMorto", typeof(Sprite)) as Sprite;
 							spriteRenderer.sprite = spritePersonagemMorreu;

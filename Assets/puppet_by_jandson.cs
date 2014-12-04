@@ -14,11 +14,13 @@ public class puppet_by_jandson : MonoBehaviour {
 		private PopupWindowGameOver janela_gui; //referenciado agora internamente ao popupgameover
 		private CameraVisaoDoEstagio cameraPrincipal;
 		private SpriteRenderer spriteRenderer; //cara que muda os sprites do personagem
+		protected Animator animacao;
 
 		// Use this for initialization
 		void Start () {
 			//coisas relacionadas a troca de sprites do personagem
 			spriteRenderer = GetComponent<SpriteRenderer>(); // we are accessing the SpriteRenderer that is attached to the Gameobject
+			animacao = GetComponent<Animator>();
 			if (spriteRenderer.sprite == null) 
 			{
 				Sprite spritePersonagemComum = Resources.Load("bonecoPequeno", typeof(Sprite)) as Sprite;
@@ -40,7 +42,7 @@ public class puppet_by_jandson : MonoBehaviour {
 		}
 
 		//chamado apenas pelo botao go, e chamado apenas 1x
-		public void setWalk(){andando = true;ordem_final[indice_vetor].highlights ();}
+		public void setWalk(){andando = true;ordem_final[indice_vetor].highlights ();this.animacao.SetBool ("Walk", true);}
 
 		public bool getWalk() {return andando;}
 
@@ -147,7 +149,7 @@ public class puppet_by_jandson : MonoBehaviour {
 							col.collider.isTrigger = true;
 							col.rigidbody.isKinematic = true;
 							//delay para realizar a açao apenas quando se aproximar o suficiente
-							yield return new WaitForSeconds(0.6F);
+							yield return new WaitForSeconds(0.7F);
 							AudioClip sfxBatida = Resources.Load("comedy_music_run_fall_and_crash", typeof(AudioClip)) as AudioClip;
 							audio.PlayOneShot(sfxBatida);
 							//camera volta a nao ter pai
@@ -189,6 +191,7 @@ public class puppet_by_jandson : MonoBehaviour {
 					}
 				break;
 				case "finish":
+					this.animacao.SetBool ("Walk", false);
 					andando = false;
 					janela_gui.mostrarCenaDeFinalDeFase = true;
 					janela_gui.mostrarPopupGameOver = true;
